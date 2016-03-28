@@ -1,7 +1,4 @@
-package java.dao;
+package java.web.dao;
 
-/**
- * Created by Олег on 26.03.2016.
- */
 public class Connector {
 }

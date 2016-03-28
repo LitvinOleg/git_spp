@@ -1,7 +1,4 @@
-package java.service;
+package java.web.service;
 
-/**
- * Created by Олег on 26.03.2016.
- */
 public class AdminService implements AbstractService {
 }

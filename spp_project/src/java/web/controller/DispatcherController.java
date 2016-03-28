@@ -1,7 +1,4 @@
-package java.controller;
+package java.web.controller;
 
-/**
- * Created by Олег on 26.03.2016.
- */
 public class DispatcherController implements AbstractController {
 }
