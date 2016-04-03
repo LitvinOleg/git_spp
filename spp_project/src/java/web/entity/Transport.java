@@ -1,19 +1,24 @@
 package java.web.entity;
 
 public class Transport {
+
     private int stateNumber;
     private String model;
+    private int tonnage;
     private TrailerType trailerType;
     private int paymentForKilometer;
+    private boolean isOrdered = false;
 
     public Transport() {}
 
     public Transport(int stateNumber,
                      String model,
+                     int tonnage,
                      TrailerType trailerType,
                      int paymentForKilometer) {
         this.stateNumber = stateNumber;
         this.model = model;
+        this.tonnage = tonnage;
         this.trailerType = trailerType;
         this.paymentForKilometer = paymentForKilometer;
     }
@@ -24,14 +29,31 @@ public class Transport {
     public String getModel() {
         return model;
     }
+    public int getTonnage() {
+        return tonnage;
+    }
     public TrailerType getTrailerType() {
         return trailerType;
     }
     public int getPaymentForKilometer() {
         return paymentForKilometer;
     }
+    public boolean isOrdered() {return isOrdered; }
 
-
+    public void setStateNumber(int stateNumber) {
+        this.stateNumber = stateNumber;
+    }
+    public void setModel(String model) {
+        this.model = model;
+    }
+    public void setTonnage(int tonnage) { this.tonnage = tonnage; }
+    public void setTrailerType(TrailerType trailerType) {
+        this.trailerType = trailerType;
+    }
+    public void setPaymentForKilometer(int paymentForKilometer) {
+        this.paymentForKilometer = paymentForKilometer;
+    }
+    public void order() { isOrdered = true; }
 
     /**
      * Enum of trailer types

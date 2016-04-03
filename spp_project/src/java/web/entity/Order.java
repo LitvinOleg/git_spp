@@ -13,16 +13,23 @@ public class Order {
         transportList = new ArrayList<>();
     }
 
-    public void addLoad(Load load) { loadList.add(load); }
-    public void removeLoad (Load load) { loadList.remove(load); }
-
-    public void addTransport(Transport transport) { transportList.add(transport); }
-    public void removeTransport(Transport transport) { transportList.remove(transport); }
-
+    public int getOrderID() {
+        return orderID;
+    }
     public List<Load> getLoadList() {
         return loadList;
     }
     public List<Transport> getTransportList() {
         return transportList;
+    }
+
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
+    public void setLoadList(List<Load> loadList) {
+        this.loadList = loadList;
+    }
+    public void setTransportList(List<Transport> transportList) {
+        this.transportList = transportList;
     }
 }

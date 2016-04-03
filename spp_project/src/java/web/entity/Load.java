@@ -1,11 +1,13 @@
 package java.web.entity;
 
 public class Load {
+
     private int loadID;
     private int weight;
     private int costOfDelivery;
     private LoadType loadType;
     private String loadDescription;
+    private boolean isOrdered = false;
 
     public Load() {}
 
@@ -36,6 +38,24 @@ public class Load {
     public String getLoadDescription() {
         return loadDescription;
     }
+    public boolean isOrdered() {return isOrdered; }
+
+    public void setLoadID(int loadID) {
+        this.loadID = loadID;
+    }
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+    public void setCostOfDelivery(int costOfDelivery) {
+        this.costOfDelivery = costOfDelivery;
+    }
+    public void setLoadType(LoadType loadType) {
+        this.loadType = loadType;
+    }
+    public void setLoadDescription(String loadDescription) {
+        this.loadDescription = loadDescription;
+    }
+    public void order() { isOrdered = true; }
 
     /**
      * Enum for goods

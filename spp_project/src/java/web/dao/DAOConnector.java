@@ -4,21 +4,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Connector {
-    private Connection connection;
-    private final String driverName = "com.mysql.jdbc.Driver";
-    private boolean isCreated = false;
+public class DAOConnector {
+    private static Connection instance;
+    private static final String driverName = "com.mysql.jdbc.Driver";
+    private static boolean isCreated = false;
 
-    private final String URL = "jdbc:mysql://localhost:3306";
-    private final String nameDB = "root";
-    private final String passwordDB = "root";
+    private static final String URL = "jdbc:mysql://localhost:3306";
+    private static final String nameDB = "root";
+    private static final String passwordDB = "root";
 
-    private Connector() {}
+    private DAOConnector() {}
 
-    public Connection getConnection() {
+    public static Connection getInstance() {
         try {
             Class.forName(driverName);
-            connection = DriverManager.getConnection(URL, nameDB, passwordDB);
+            instance = DriverManager.getConnection(URL, nameDB, passwordDB);
             isCreated = true;
         } catch (ClassNotFoundException ex) {
             System.out.println("Class: " + driverName + " is not found! - " + ex);
@@ -26,13 +26,13 @@ public class Connector {
             System.out.println(ex);
         }
 
-        return connection;
+        return instance;
     }
 
-    public void close() {
+    public static void closeConnection() {
         if (isCreated)
             try {
-                connection.close();
+                instance.close();
                 isCreated = false;
             } catch (SQLException ex) {
                 System.out.println(ex);
