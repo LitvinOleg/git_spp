@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - spp_project_db@localhost" uuid="c56a6535-2931-4057-afbe-c4557d22d09a">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>spp_project_db.*</schema-pattern>
+      <default-schemas>spp_project_db.*</default-schemas>
+    </data-source>
+  </component>
+</project>

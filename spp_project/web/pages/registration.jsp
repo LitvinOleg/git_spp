@@ -1,4 +1,5 @@
-<%@ page import="java.web.view.View" %><%--
+<%@ page import="classes.web.view.View" %>
+<%@ page import="classes.web.entity.user.User" %><%--
   Created by IntelliJ IDEA.
   User: Олег
   Date: 26.03.2016
@@ -24,6 +25,8 @@
         <input type="submit" value="registration" name="registration">
     </form>
 
-    <div><%System.getProperty("java.classpath");%></div>
+    <div><%
+        View.registerUserView(request, response, User.UserType.CLIENT);
+    %></div>
 </body>
 </html>
