@@ -12,21 +12,31 @@
     <title>Регистрация</title>
 </head>
 <body>
-    <h1>Регистрация</h1>
-    <form action="registration.jsp" method="post">
-        Login<br>
-        <input type="text" name="login"><br>
-        Name<br>
-        <input type="text" name="name"><br>
-        Surname<br>
-        <input type="text" name="surname"><br>
-        Password<br>
-        <input type="password" name="password"><br>
-        <input type="submit" value="registration" name="registration">
-    </form>
+    <!--head-->
+    <div id="head">
 
-    <div><%
-        View.registerUserView(request, response, User.UserType.CLIENT);
-    %></div>
+    </div>
+
+    <!--content-->
+    <div id="content">
+        <h1>Registration</h1>
+        <div id="form">
+            <form action="registration.jsp" method="post">
+                Login<br>
+                <input type="text" name="login"><br>
+                Name<br>
+                <input type="text" name="name"><br>
+                Surname<br>
+                <input type="text" name="surname"><br>
+                Password<br>
+                <input type="password" name="password"><br>
+                <input type="submit" value="registration" name="registration">
+            </form>
+        </div>
+
+        <div id="reg-result">
+            <%=View.registerUserView(request, User.UserType.CLIENT)%>
+        </div>
+    </div>
 </body>
 </html>

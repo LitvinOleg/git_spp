@@ -1,12 +1,16 @@
 package classes.web.view;
 
 import classes.web.controller.ModificationController;
+import classes.web.controller.ShowInformationController;
+import classes.web.controller.exception.ControllerException;
+import classes.web.entity.Load;
 import classes.web.entity.user.User;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Олег on 01.04.2016.
@@ -16,28 +20,36 @@ public class View {
     /**
      * Registers the client
      * @param request - http request of client
-     * @param response - response for user
      * @throws IOException
      */
-    public static void registerUserView(HttpServletRequest request,
-                                        HttpServletResponse response,
+    public static String registerUserView(HttpServletRequest request,
                                         User.UserType userType) {
+        String result = "";
+        if (request.getParameter("registration") != null)
+            result = ModificationController.AddNewUserController(request, userType);
+        return result;
+    }
+
+    /**
+     * Views free load
+     * @return list of free loads
+     */
+    public static List<Load> viewFreeLoadList() {
+
         try {
-            if (request.getParameter("registration") != null) {
-                PrintWriter writer = response.getWriter();
-                String result = "";
-                result = ModificationController.AddNewUserController(request, userType);
-                writer.println(result);
-            }
-        } catch (IOException ex) {}
+            return ShowInformationController.viewLoadListController(User.UserType.VISITOR);
+        } catch (ControllerException ex) {
+            return new ArrayList<>();
+        }
     }
 
     /**
      *
-     * @param request
-     * @param response
+     * @return
      */
-    public static void loginUserView(HttpServletRequest request,
-                                     HttpServletResponse response) {
+    public static List<String> viewFreeOrderList() {
+        ArrayList<String> freeOrderList = new ArrayList<>();
+
+        return freeOrderList;
     }
 }

@@ -15,9 +15,7 @@ public class User {
     protected List<Load> allLoads;
     protected List<Transport> allTransports;
 
-    public User() {
-        this.userType = UserType.USER;
-    }
+    public User() {}
 
     public String getName() {
         return name;
@@ -87,9 +85,25 @@ public class User {
      * User types that can exist
      */
     public static enum UserType {
-        ADMIN, // 1
-        DISPATCHER, // 2
-        CLIENT, // 3
-        USER;
+        ADMIN("Admin", 1), // 1
+        DISPATCHER("Dispatcher", 2), // 2
+        CLIENT("Client", 3), // 3
+        VISITOR("Visitor", 4);
+
+        private String userType;
+        private int enumValue;
+
+        private UserType(String userType, int enumValue) {
+            this.userType = userType;
+            this.enumValue = enumValue;
+        }
+
+        public int getEnumValue() {
+            return enumValue;
+        }
+
+        public String getUserType() {
+            return userType;
+        }
     }
 }

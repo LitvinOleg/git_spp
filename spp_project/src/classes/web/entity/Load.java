@@ -7,7 +7,6 @@ public class Load {
     private int costOfDelivery;
     private LoadType loadType;
     private String loadDescription;
-    private boolean isOrdered = false;
 
     public Load() {}
 
@@ -38,7 +37,6 @@ public class Load {
     public String getLoadDescription() {
         return loadDescription;
     }
-    public boolean isOrdered() {return isOrdered; }
 
     public void setLoadID(int loadID) {
         this.loadID = loadID;
@@ -49,34 +47,39 @@ public class Load {
     public void setCostOfDelivery(int costOfDelivery) {
         this.costOfDelivery = costOfDelivery;
     }
-    public void setLoadType(LoadType loadType) {
-        this.loadType = loadType;
+    public void setLoadType(int enumValue) {
+        for (LoadType element : LoadType.values())
+            if (element.getEnumValue() == enumValue)
+                this.loadType = element;
     }
     public void setLoadDescription(String loadDescription) {
         this.loadDescription = loadDescription;
     }
-    public void order() { isOrdered = true; }
 
     /**
      * Enum for goods
      */
     public enum LoadType {
-        DANGEROUS("Dangerous"), // 1
-        PERISHABLE("Perishable"), // 2
-        SUPERHEAVY("Superheavy"), // 3
-        ALIVE("Alive"), // 4
-        BULKY("Bulky"); // 5
+        DANGEROUS("Dangerous", 1), // 1
+        PERISHABLE("Perishable", 2), // 2
+        SUPERHEAVY("Superheavy", 3), // 3
+        ALIVE("Alive", 5), // 4
+        BULKY("Bulky", 6); // 5
 
         private String loadTypeName;
+        private int enumValue;
 
-        private LoadType(String loadTypeName) {
+        private LoadType(String loadTypeName, int enumValue) {
             this.loadTypeName = loadTypeName;
+            this.enumValue = enumValue;
         }
 
+        public int getEnumValue() {
+            return enumValue;
+        }
 
-        @Override
-        public String toString() {
-            return this.loadTypeName;
+        public String getLoadTypeName() {
+            return loadTypeName;
         }
     }
 }

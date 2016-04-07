@@ -11,19 +11,22 @@ import static classes.web.entity.user.User.*;
  * Created by Олег on 31.03.2016.
  */
 public class ModificationController {
-
+    /**
+     * Adds new user to DB(depends on user type)
+     * @param request
+     * @param userType
+     * @return
+     */
     public static String AddNewUserController(HttpServletRequest request, UserType userType) {
         String result = "";
         String login = request.getParameter("login");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String password = request.getParameter("password");
-
         try {
             if (login == null || name == null || surname == null || password == null ||
                 login.equals("") || name.equals("") || surname.equals("") || password.equals(""))
                 return ("Not all fields are field!");
-
             switch (userType) {
                 case CLIENT: {
                     Client client = new Client();
@@ -31,22 +34,17 @@ public class ModificationController {
                     client.setName(name);
                     client.setSurname(surname);
                     client.setPassword(password);
-
                     if(ModificationService.addNewUserService(client))
                         result = "The user have been created!";
                 } break;
                 case DISPATCHER: {
-
                 } break;
                 case ADMIN: {
-
                 }
             }
         } catch (Exception ex) {
             return ex.getMessage();
         }
-
         return result;
     }
-
 }
