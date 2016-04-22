@@ -2,102 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9e4dba2-b3e7-471e-9987-b416224c11a9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/javax_servlet_api.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/junit_4_10.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/web/controller/GetInformationController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/web/model/dao/GetInformationDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/classes/web/model/service/GetInformationService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/js/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/bootstrap/js/npm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/client_account.jsp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/model/dao/ModificationDao$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/account.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/css/account.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/css/loads.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/css/orders.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/css/registration.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/css/transport.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/loads.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/orders.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/transports.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/model/dao/ModificationDao$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/classes/web/controller/ShowInformationController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/classes/web/model/dao/ShowInformationDao.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/classes/web/model/service/ShowInformationService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/classes/web/view/exception/ViewException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/account.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/css/account.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/css/loads.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/css/orders.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/css/registration.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/loads.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/transports.jsp" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/controller/ModificationController$1.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/controller/ModificationController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/controller/ModificationController.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/controller/ModificationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Load$LoadType.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Load$LoadType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Load.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Load.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Order.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Order.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Transport$TrailerType.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Transport$TrailerType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Transport.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/Transport.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/user/User$UserType.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/user/User$UserType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/user/User.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/entity/user/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/model/dao/ModificationDao.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/model/dao/ModificationDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/model/dao/connection/DaoConnector.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/model/dao/connection/DaoConnector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/model/service/ModificationService.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/model/service/ModificationService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/view/View.class" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/WEB-INF/classes/classes/web/view/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/controller/ModificationController$1.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/controller/ModificationController$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/controller/ModificationController.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/controller/ModificationController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Load$LoadType.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Load$LoadType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Load.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Load.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Order.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Order.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Transport$TrailerType.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Transport$TrailerType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Transport.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/Transport.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/user/User$UserType.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/user/User$UserType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/user/User.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/entity/user/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/model/dao/ModificationDao.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/model/dao/ModificationDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/model/dao/connection/DaoConnector.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/model/dao/connection/DaoConnector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/model/service/ModificationService.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/model/service/ModificationService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/spp_project/classes/web/view/View.class" afterPath="$PROJECT_DIR$/out/production/spp_project/classes/web/view/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/pages/css/register.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../spp_project.ra" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap-theme.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.min.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/pages/bootstrap/js/npm.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/css/main.css" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/main.jsp" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/registration.jsp" afterPath="$PROJECT_DIR$/out/artifacts/spp_project_war_exploded/pages/registration.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spp_project.iml" afterPath="$PROJECT_DIR$/spp_project.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/controller/ModificationController.java" afterPath="$PROJECT_DIR$/src/classes/web/controller/ModificationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/controller/exception/ControllerException.java" afterPath="$PROJECT_DIR$/src/classes/web/controller/exception/ControllerException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/entity/Load.java" afterPath="$PROJECT_DIR$/src/classes/web/entity/Load.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/entity/Order.java" afterPath="$PROJECT_DIR$/src/classes/web/entity/Order.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/entity/Transport.java" afterPath="$PROJECT_DIR$/src/classes/web/entity/Transport.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/entity/user/User.java" afterPath="$PROJECT_DIR$/src/classes/web/entity/user/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/model/dao/ModificationDao.java" afterPath="$PROJECT_DIR$/src/classes/web/model/dao/ModificationDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/model/dao/connection/DaoConnector.java" afterPath="$PROJECT_DIR$/src/classes/web/model/dao/connection/DaoConnector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/model/dao/exception/DaoException.java" afterPath="$PROJECT_DIR$/src/classes/web/model/dao/exception/DaoException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/model/service/ModificationService.java" afterPath="$PROJECT_DIR$/src/classes/web/model/service/ModificationService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/model/service/exception/ServiceException.java" afterPath="$PROJECT_DIR$/src/classes/web/model/service/exception/ServiceException.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/web/view/View.java" afterPath="$PROJECT_DIR$/src/classes/web/view/View.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/pages/css/main.css" afterPath="$PROJECT_DIR$/web/pages/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/pages/main.jsp" afterPath="$PROJECT_DIR$/web/pages/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/pages/registration.jsp" afterPath="$PROJECT_DIR$/web/pages/registration.jsp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/web/pages/css/transport.css" afterPath="$PROJECT_DIR$/web/pages/css/elements.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/web/pages/orders.jsp" afterPath="$PROJECT_DIR$/web/pages/admin_account.jsp" />
     </list>
     <ignored path="spp_project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -205,21 +128,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="elements.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="elements.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/pages/css/elements.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.08287293">
-              <caret line="71" column="20" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+            <state vertical-scroll-proportion="-11.478261">
+              <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.css">
+      <file leaf-file-name="register.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/pages/css/register.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="996.43475">
-              <caret line="2709" column="15" selection-start-line="2709" selection-start-column="15" selection-end-line="2709" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -273,7 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/java/web/beans/Client.java" />
         <option value="$PROJECT_DIR$/src/java/web/beans/User.java" />
         <option value="$PROJECT_DIR$/src/java/web/beans/Dispatcher.java" />
         <option value="$PROJECT_DIR$/src/java/web/entity/Order.java" />
@@ -324,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/classes/web/controller/ModificationController.java" />
         <option value="$PROJECT_DIR$/web/pages/main.jsp" />
         <option value="$PROJECT_DIR$/web/pages/css/main.css" />
+        <option value="$PROJECT_DIR$/web/pages/css/register.css" />
       </list>
     </option>
   </component>
@@ -470,54 +393,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spp_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spp_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spp_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spp_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1554,7 +1429,7 @@
       <workItem from="1461148150762" duration="622000" />
       <workItem from="1461182388420" duration="89000" />
       <workItem from="1461225609894" duration="2573000" />
-      <workItem from="1461247961973" duration="22981000" />
+      <workItem from="1461247961973" duration="23148000" />
     </task>
     <task id="LOCAL-00001" summary="Some recovery">
       <created>1459177909261</created>
@@ -1566,10 +1441,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180624000" />
+    <option name="totallyTimeSpent" value="180791000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1648,14 +1523,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/classes/web/entity/user/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="54" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/web/model/dao/GetInformationDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1822,27 +1689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/pages/bootstrap/js/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4027777">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/pages/bootstrap/js/npm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/pages/bootstrap/js/bootstrap.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/pages/registration.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1989,14 +1835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/pages/bootstrap/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="996.43475">
-          <caret line="2709" column="15" selection-start-line="2709" selection-start-column="15" selection-end-line="2709" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/web/entity/user/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2047,8 +1885,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/pages/css/elements.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.08287293">
-          <caret line="71" column="20" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="20" />
+        <state vertical-scroll-proportion="-11.478261">
+          <caret line="92" column="26" selection-start-line="92" selection-start-column="26" selection-end-line="92" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/pages/css/register.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
