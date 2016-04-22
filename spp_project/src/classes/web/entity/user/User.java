@@ -89,7 +89,7 @@ public class User {
     /**
      * User types that can exist
      */
-    public static enum UserType {
+    public enum UserType {
         ADMIN("Admin", 1), // 1
         DISPATCHER("Dispatcher", 2), // 2
         CLIENT("Client", 3), // 3

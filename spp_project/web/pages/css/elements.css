@@ -1,0 +1,94 @@
+/* Form and form elements */
+.form-inline {
+    display: inline-block;
+}
+
+.text-input {
+    background: none;
+    font-size: 11px;
+    padding: 7px;
+    margin: 3px;
+    border-radius: 3px;
+    min-width: 150px;
+    border: none;
+    box-shadow: 0 0 10px rgba(115, 200, 255, 0.8);
+}
+
+.big-text-input {
+    font-size: 16px;
+    padding: 11px;
+    margin: 3px;
+    border-radius: 5px;
+    min-width: 150px;
+    border: none;
+}
+
+.textarea-input {
+    background: none;
+    font-size: 11px;
+    padding: 7px;
+    margin: 3px;
+    border-radius: 3px;
+    min-width: 150px;
+    height: 75px;
+    border: none;
+    resize: none;
+    box-shadow: 0 0 10px rgba(115, 200, 255, 0.84);
+}
+
+.button {
+    background: rgba(115, 200, 255, 0.85);
+    font-size: 11px;
+    padding: 7px;
+    margin: 3px;
+    border-radius: 3px;
+    min-width: 100px;
+    border: none;
+}
+
+.big-button {
+    background: rgba(224, 246, 255, 0.85);
+    font-size: 16px;
+    padding: 11px;
+    margin: 3px;
+    border-radius: 5px;
+    min-width: 120px;
+    border: none;
+}
+
+.button:hover,
+.big-button:hover {
+    background: #5caaff;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.84);
+}
+
+/* Tables */
+.table {
+    width: 90%;
+    margin: 5%;
+    margin-top: 0;
+    height: auto;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+th {
+    background: #80ade7;
+    color: white;
+    padding: 10px 20px;
+}
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+td {
+    background: #D8E6F3;
+    padding: 10px 20px;
+}
+
+/* Marker classes */
+.inline {
+    display: inline-block;
+}

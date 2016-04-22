@@ -4,7 +4,6 @@ import classes.web.controller.exception.ControllerException;
 import classes.web.entity.Load;
 import classes.web.entity.Transport;
 import classes.web.entity.user.User;
-import classes.web.model.dao.GetInformationDao;
 import classes.web.model.service.exception.ServiceException;
 import classes.web.model.service.GetInformationService;
 
@@ -14,9 +13,6 @@ import java.util.List;
 
 import static classes.web.entity.user.User.*;
 
-/**
- *
- */
 public class GetInformationController {
     public static List<Load> viewLoadListController(UserType userType, String... args) throws ControllerException {
         List<Load> loadList = new ArrayList<>();

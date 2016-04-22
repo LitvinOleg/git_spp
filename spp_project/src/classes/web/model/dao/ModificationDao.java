@@ -190,6 +190,10 @@ public class ModificationDao {
         }
     }
 
+
+
+
+
     public static boolean deleteUser(String login) throws DaoException {
         boolean result;
         try {

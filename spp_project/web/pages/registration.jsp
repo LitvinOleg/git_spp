@@ -6,7 +6,6 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/regStyle.css">
     <title>Registration</title>
 </head>
 <body>
@@ -53,36 +52,32 @@
     <!--Content-->
     <div id="content-panel">
         <!--Registration form-->
-                <form class="regForm" action="registration.jsp" method="post">
-                    <div class="form_left-block">
-                        <p><label for="forName">Имя</label></p>
-                        <p><label for="forSurname">Фамилия</label></p>
-                        <p><label for="forLogin">Логин</label></p>	<br>
-                        <p><label for="forPassword">Пароль</label></p>
-                        <p><label for="forRepeat">Повторите</label></p>
-                    </div>
-                    <div class="form_right-block">
-                        <input type="text" id="forName" name="name" required> <span></span><br>
-                        <input type="text" id="forSurname" name="surname" required> <span></span><br>
-                        <input type="text" id="forLogin" name="login" required> <span></span><br>
-                        <input type="password" id="forPassword" name="password" required> <span></span><br>
-                        <input type="password" id="forRepeat" name="password" required> <span></span><br>
-                    </div>
-                    <div class="regButt">
-                        <button type="submit" value="registration" name="registration">Registration</button>
-                    </div>
+        <div id="registration">
+            <h1>Registration</h1>
+            <div id="form">
+                <form action="registration.jsp" method="post">
+                    Login<br>
+                    <input type="text" name="login"><br>
+                    Name<br>
+                    <input type="text" name="name"><br>
+                    Surname<br>
+                    <input type="text" name="surname"><br>
+                    Password<br>
+                    <input type="password" name="password"><br>
+                    <input type="submit" value="registration" name="registration">
                 </form>
+            </div>
 
             <!--Result of registration-->
             <div id="reg-result">
                 <%=View.registerUserView(request, UserType.CLIENT)%>
             </div>
+        </div>
     </div>
 
 
     <!--Bottom-->
     <div id="bottom-panel">
-        <p align="center">&copy 2016 гр.351004</p>
     </div>
 </body>
 </html>

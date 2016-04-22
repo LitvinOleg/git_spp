@@ -83,6 +83,8 @@ public class ModificationController {
     public static String removeLoadController(HttpServletRequest request) throws ControllerException{
         try {
             String login = request.getSession().getAttribute("login").toString();
+            if (request.getParameter("load_id").equals(""))
+                throw new ControllerException("Not all fields are field");
             int loadId = Integer.parseInt(request.getParameter("load_id"));
             UserType userType = (UserType) request.getSession().getAttribute("user_type");
             switch (userType) {
@@ -93,7 +95,7 @@ public class ModificationController {
                     return ModificationService.removeFreeLoadService(loadId);
                 }
             }
-        } catch (ServiceException ex) {
+        } catch (ControllerException | ServiceException | RuntimeException ex) {
             throw new ControllerException(ex.getMessage());
         }
         return "";
