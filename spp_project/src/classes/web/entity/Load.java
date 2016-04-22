@@ -63,13 +63,13 @@ public class Load {
         DANGEROUS("Dangerous", 1), // 1
         PERISHABLE("Perishable", 2), // 2
         SUPERHEAVY("Superheavy", 3), // 3
-        ALIVE("Alive", 5), // 4
-        BULKY("Bulky", 6); // 5
+        ALIVE("Alive", 4), // 4
+        BULKY("Bulky", 5); // 5
 
         private String loadTypeName;
         private int enumValue;
 
-        private LoadType(String loadTypeName, int enumValue) {
+        LoadType(String loadTypeName, int enumValue) {
             this.loadTypeName = loadTypeName;
             this.enumValue = enumValue;
         }

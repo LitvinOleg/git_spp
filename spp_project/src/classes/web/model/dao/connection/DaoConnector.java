@@ -1,9 +1,14 @@
 package classes.web.model.dao.connection;
 
+import classes.web.model.dao.exception.DaoException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * JDBC connection class
+ */
 public class DaoConnector {
     private static volatile Connection instance;
     private static final String driverName = "com.mysql.jdbc.Driver";
@@ -14,14 +19,14 @@ public class DaoConnector {
 
     private DaoConnector() {}
 
-    public static Connection getInstance() {
+    public static Connection getInstance() throws DaoException {
         try {
             Class.forName(driverName);
             instance = DriverManager.getConnection(URL, nameDB, passwordDB);
         } catch (ClassNotFoundException ex) {
-            System.out.println("Class: " + driverName + " is not found! - " + ex);
+            throw new DaoException("Class not found!");
         } catch (SQLException ex) {
-            System.out.println(ex);
+            throw new DaoException(ex.getMessage());
         }
         return instance;
     }

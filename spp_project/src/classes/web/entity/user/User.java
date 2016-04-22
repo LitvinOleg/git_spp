@@ -6,9 +6,9 @@ import java.util.List;
 import classes.web.entity.Load;
 
 public class User {
+    protected String login;
     protected String name;
     protected String surname;
-    protected String login;
     protected String password;
     protected UserType userType;
 
@@ -51,8 +51,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setUserType(int userType) {
+        switch (userType) {
+            case 1: this.userType = UserType.ADMIN; break;
+            case 2: this.userType = UserType.DISPATCHER; break;
+            case 3: this.userType = UserType.CLIENT; break;
+            default: this.userType = UserType.VISITOR;
+        }
     }
     public void setAllLoads(List<Load> allLoads) {
         this.allLoads = allLoads;
@@ -93,7 +98,7 @@ public class User {
         private String userType;
         private int enumValue;
 
-        private UserType(String userType, int enumValue) {
+        UserType(String userType, int enumValue) {
             this.userType = userType;
             this.enumValue = enumValue;
         }
