@@ -15,6 +15,12 @@ public class Order {
         this.generateOrderId();
     }
 
+    public Order(int orderID) {
+        loadList = new ArrayList<>();
+        transportList = new ArrayList<>();
+        this.orderID = orderID;
+    }
+
     public int getOrderID() {
         return orderID;
     }

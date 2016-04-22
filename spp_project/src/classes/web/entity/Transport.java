@@ -7,7 +7,6 @@ public class Transport {
     private int tonnage;
     private TrailerType trailerType;
     private int paymentForKilometer;
-    private boolean isOrdered = false;
 
     public Transport() {}
 
@@ -38,7 +37,6 @@ public class Transport {
     public int getPaymentForKilometer() {
         return paymentForKilometer;
     }
-    public boolean isOrdered() {return isOrdered; }
 
     public void setStateNumber(int stateNumber) {
         this.stateNumber = stateNumber;
@@ -47,34 +45,40 @@ public class Transport {
         this.model = model;
     }
     public void setTonnage(int tonnage) { this.tonnage = tonnage; }
-    public void setTrailerType(TrailerType trailerType) {
-        this.trailerType = trailerType;
+    public void setTrailerType(int trailerType) {
+        for (TrailerType element : TrailerType.values())
+            if (element.getEnumValue() == trailerType)
+                this.trailerType = element;
     }
     public void setPaymentForKilometer(int paymentForKilometer) {
         this.paymentForKilometer = paymentForKilometer;
     }
-    public void order() { isOrdered = true; }
 
     /**
      * Enum of trailer types
      */
-    private enum TrailerType {
-        SEMI_TRAILER("Semi-trailer"), // 1
-        REFRIGERATOR("Refrigerator"), // 2
-        OPEN_PLATFORM("Open-platform"), // 3
-        ROAD_TRAIN("Road train"), // 4
-        ISOTHERM("Thermos"), // 5
-        JUMBO("G-type"); // 6
+    public enum TrailerType {
+        SEMI_TRAILER("Semi-trailer", 1), // 1
+        REFRIGERATOR("Refrigerator", 2), // 2
+        OPEN_PLATFORM("Open-platform", 3), // 3
+        ROAD_TRAIN("Road train", 4), // 4
+        ISOTHERM("Thermos", 5), // 5
+        JUMBO("G-type", 6); // 6
 
         private String trailerTypeName;
+        private int enumValue;
 
-        TrailerType(String trailerTypeName) {
+        TrailerType(String trailerTypeName, int enumValue) {
             this.trailerTypeName = trailerTypeName;
+            this.enumValue = enumValue;
         }
 
-        @Override
-        public String toString() {
-            return this.trailerTypeName;
+        public String getTrailerTypeName() {
+            return trailerTypeName;
+        }
+
+        public int getEnumValue() {
+            return enumValue;
         }
     }
 }

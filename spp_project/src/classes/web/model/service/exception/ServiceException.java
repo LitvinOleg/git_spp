@@ -1,7 +1,7 @@
 package classes.web.model.service.exception;
 
 /**
- * Created by Олег on 07.04.2016.
+ * Service layer exception
  */
 public class ServiceException extends Exception {
     public ServiceException() {

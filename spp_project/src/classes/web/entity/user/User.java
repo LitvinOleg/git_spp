@@ -6,18 +6,16 @@ import java.util.List;
 import classes.web.entity.Load;
 
 public class User {
+    protected String login;
     protected String name;
     protected String surname;
-    protected String login;
     protected String password;
     protected UserType userType;
 
     protected List<Load> allLoads;
     protected List<Transport> allTransports;
 
-    public User() {
-        this.userType = UserType.USER;
-    }
+    public User() {}
 
     public String getName() {
         return name;
@@ -53,8 +51,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setUserType(int userType) {
+        switch (userType) {
+            case 1: this.userType = UserType.ADMIN; break;
+            case 2: this.userType = UserType.DISPATCHER; break;
+            case 3: this.userType = UserType.CLIENT; break;
+            default: this.userType = UserType.VISITOR;
+        }
     }
     public void setAllLoads(List<Load> allLoads) {
         this.allLoads = allLoads;
@@ -86,10 +89,26 @@ public class User {
     /**
      * User types that can exist
      */
-    public static enum UserType {
-        ADMIN, // 1
-        DISPATCHER, // 2
-        CLIENT, // 3
-        USER;
+    public enum UserType {
+        ADMIN("Admin", 1), // 1
+        DISPATCHER("Dispatcher", 2), // 2
+        CLIENT("Client", 3), // 3
+        VISITOR("Visitor", 4);
+
+        private String userType;
+        private int enumValue;
+
+        UserType(String userType, int enumValue) {
+            this.userType = userType;
+            this.enumValue = enumValue;
+        }
+
+        public int getEnumValue() {
+            return enumValue;
+        }
+
+        public String getUserType() {
+            return userType;
+        }
     }
 }
