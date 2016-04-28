@@ -4,7 +4,7 @@
 }
 
 .text-input {
-    background: none;
+    background: rgba(255, 255, 255, 0.7);
     font-size: 11px;
     padding: 7px;
     margin: 3px;
@@ -15,6 +15,7 @@
 }
 
 .big-text-input {
+    background: rgba(255, 255, 255, 0.6);
     font-size: 16px;
     padding: 11px;
     margin: 3px;
@@ -24,7 +25,7 @@
 }
 
 .textarea-input {
-    background: none;
+    background: rgba(255, 255, 255, 0.7);
     font-size: 11px;
     padding: 7px;
     margin: 3px;
@@ -42,7 +43,7 @@
     padding: 7px;
     margin: 3px;
     border-radius: 3px;
-    min-width: 100px;
+    min-width: 70px;
     border: none;
 }
 
@@ -86,6 +87,19 @@ th, td {
 td {
     background: #D8E6F3;
     padding: 10px 20px;
+}
+
+.select select {
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    padding: 7px;
+    margin: 3px;
+    border-radius: 3px;
+    min-width: 150px;
+    height: 75px;
+    border: none;
+    resize: none;
+    box-shadow: 0 0 10px rgba(115, 200, 255, 0.84);
 }
 
 /* Marker classes */

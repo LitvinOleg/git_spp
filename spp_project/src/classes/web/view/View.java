@@ -37,9 +37,6 @@ public class View {
         return result;
     }
 
-
-
-
     public static String removeUserView(HttpServletRequest request) {
         String result = "";
         try {
@@ -52,9 +49,7 @@ public class View {
     }
     public static String removeLoadView(HttpServletRequest request) {
         try {
-            if (request.getParameter("load_id") == null ||
-                request.getParameter("delete_load") == null ||
-                request.getParameter("load_id").equals(""))
+            if (request.getParameter("delete_load") == null)
                     return "";
             else
                 return ModificationController.removeLoadController(request);
@@ -64,9 +59,7 @@ public class View {
     }
     public static String removeTransportView(HttpServletRequest request) {
         try {
-            if (request.getParameter("state_number") == null ||
-                    request.getParameter("delete_transport") == null ||
-                    request.getParameter("state_number").equals(""))
+            if (request.getParameter("delete_transport") == null)
                 return "";
             else
                 return ModificationController.removeTransportController(request);
@@ -74,8 +67,6 @@ public class View {
             return ex.getMessage();
         }
     }
-
-
 
     public static String addFreeLoadView(HttpServletRequest request) {
         try {
@@ -89,9 +80,7 @@ public class View {
     }
     public static String addClientLoadView(HttpServletRequest request) {
         try {
-            if (request.getParameter("add_load") == null ||
-                request.getParameter("load_id") == null ||
-                request.getParameter("load_id").equals(""))
+            if (request.getParameter("add_load") == null)
                     return "";
             else
                 return ModificationController.addClientLoadController(request);
@@ -111,9 +100,7 @@ public class View {
     }
     public static String addClientTransportView(HttpServletRequest request) {
         try {
-            if (request.getParameter("add_transport") == null ||
-                    request.getParameter("state_number") == null ||
-                    request.getParameter("state_number").equals(""))
+            if (request.getParameter("add_transport") == null)
                 return "";
             else
                 return ModificationController.addClientTransportController(request);
@@ -122,7 +109,26 @@ public class View {
         }
     }
 
-
+    public static String updateLoadView(HttpServletRequest request) {
+        try {
+            if (request.getParameter("update_load") == null)
+                return "";
+            else
+                return ModificationController.updateLoadController(request);
+        } catch (ControllerException ex) {
+            return ex.getMessage();
+        }
+    }
+    public static String updateTransportView(HttpServletRequest request) {
+        try {
+            if (request.getParameter("update_transport") == null)
+                return "";
+            else
+                return ModificationController.updateTransportController(request);
+        } catch (ControllerException ex) {
+            return ex.getMessage();
+        }
+    }
 
     public static List<Transport> viewFreeTransportList() {
         try {

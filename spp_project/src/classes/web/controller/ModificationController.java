@@ -79,13 +79,12 @@ public class ModificationController {
         }
         return result;
     }
-
     public static String removeLoadController(HttpServletRequest request) throws ControllerException{
         try {
             String login = request.getSession().getAttribute("login").toString();
-            if (request.getParameter("load_id").equals(""))
+            if (request.getParameter("delete_load").equals(""))
                 throw new ControllerException("Not all fields are field");
-            int loadId = Integer.parseInt(request.getParameter("load_id"));
+            int loadId = Integer.parseInt(request.getParameter("delete_load"));
             UserType userType = (UserType) request.getSession().getAttribute("user_type");
             switch (userType) {
                 case CLIENT: {
@@ -100,11 +99,10 @@ public class ModificationController {
         }
         return "";
     }
-
     public static String removeTransportController(HttpServletRequest request) throws ControllerException{
         try {
             String login = request.getSession().getAttribute("login").toString();
-            int state_number = Integer.parseInt(request.getParameter("state_number"));
+            int state_number = Integer.parseInt(request.getParameter("delete_transport"));
             UserType userType = (UserType) request.getSession().getAttribute("user_type");
             switch (userType) {
                 case CLIENT: {
@@ -125,7 +123,7 @@ public class ModificationController {
     public static String addClientLoadController(HttpServletRequest request) throws ControllerException {
         try {
             String login = request.getSession().getAttribute("login").toString();
-            int loadID = Integer.parseInt(request.getParameter("load_id"));
+            int loadID = Integer.parseInt(request.getParameter("add_load"));
             return ModificationService.addClientLoadService(loadID, login);
         } catch (ServiceException ex) {
             throw new ControllerException(ex.getMessage());
@@ -135,30 +133,45 @@ public class ModificationController {
     }
     public static String addFreeLoadController(HttpServletRequest request) throws ControllerException {
         try {
-            String weight = request.getParameter("weight");
-            String costOfDelivery = request.getParameter("cost_of_delivery");
-            String loadType = request.getParameter("load_type");
-            String description = request.getParameter("load_description");
-            if (weight == null || costOfDelivery == null || loadType == null || description == null ||
-                weight.equals("") || costOfDelivery.equals("") || loadType.equals("") || description.equals(""))
-                    throw new ControllerException("Not all fields are filled!");
+            if ((UserType) request.getSession().getAttribute("user_type") != UserType.DISPATCHER)
+                throw  new ControllerException("You are not a dispatcher!");
             else {
-                Load load = new Load();
-                load.setWeight(Integer.parseInt(weight));
-                load.setCostOfDelivery(Integer.parseInt(costOfDelivery));
-                switch (loadType) {
-                    case "dangerous": load.setLoadType(1); break;
-                    case "perishable": load.setLoadType(2); break;
-                    case "superheavy": load.setLoadType(3); break;
-                    case "alive": load.setLoadType(4); break;
-                    case "bulky": load.setLoadType(5); break;
-                    default: throw new ControllerException("Incorrect data!");
+                String weight = request.getParameter("weight");
+                String costOfDelivery = request.getParameter("cost_of_delivery");
+                String loadType = request.getParameter("load_type");
+                String description = request.getParameter("load_description");
+                if (weight == null || costOfDelivery == null || loadType == null || description == null ||
+                        weight.equals("") || costOfDelivery.equals("") || loadType.equals("") || description.equals(""))
+                    throw new ControllerException("Not all fields are filled!");
+                else {
+                    Load load = new Load();
+                    load.setWeight(Integer.parseInt(weight));
+                    load.setCostOfDelivery(Integer.parseInt(costOfDelivery));
+                    switch (loadType) {
+                        case "dangerous":
+                            load.setLoadType(1);
+                            break;
+                        case "perishable":
+                            load.setLoadType(2);
+                            break;
+                        case "superheavy":
+                            load.setLoadType(3);
+                            break;
+                        case "alive":
+                            load.setLoadType(4);
+                            break;
+                        case "bulky":
+                            load.setLoadType(5);
+                            break;
+                        default:
+                            throw new ControllerException("Incorrect data!");
+                    }
+                    load.setLoadDescription(description);
+                    if (ModificationService.addFreeLoadService(load))
+                        return "Load added!";
+                    else
+                        return "";
                 }
-                load.setLoadDescription(description);
-                if (ModificationService.addFreeLoadService(load))
-                    return "Load added!";
-                else
-                    return "";
             }
         } catch (ServiceException ex) {
             throw new ControllerException(ex.getMessage());
@@ -169,7 +182,7 @@ public class ModificationController {
     public static String addClientTransportController(HttpServletRequest request) throws ControllerException {
         try {
             String login = request.getSession().getAttribute("login").toString();
-            int state_number = Integer.parseInt(request.getParameter("state_number"));
+            int state_number = Integer.parseInt(request.getParameter("add_transport"));
             return ModificationService.addClientTransportService(state_number, login);
         } catch (ServiceException ex) {
             throw new ControllerException(ex.getMessage());
@@ -206,6 +219,99 @@ public class ModificationController {
                     return "Transport added!";
                 else
                     return "";
+            }
+        } catch (ServiceException ex) {
+            throw new ControllerException(ex.getMessage());
+        } catch (RuntimeException ex) {
+            throw new ControllerException("Incorrect input!");
+        }
+    }
+
+    public static String updateLoadController(HttpServletRequest request) throws ControllerException {
+        try {
+            if ((UserType) request.getSession().getAttribute("user_type") != UserType.DISPATCHER &&
+                (UserType) request.getSession().getAttribute("user_type") != UserType.CLIENT)
+                    throw  new ControllerException("You are not a dispatcher!");
+            else {
+                String loadID = request.getParameter("load_id");
+                String weight = request.getParameter("weight");
+                String costOfDelivery = request.getParameter("cost_of_delivery");
+                String loadType = request.getParameter("load_type");
+                String description = request.getParameter("load_description");
+                if (loadID == null || weight == null || costOfDelivery == null || loadType == null || description == null ||
+                    loadID.equals("") || weight.equals("") || costOfDelivery.equals("") || loadType.equals("") || description.equals(""))
+                    throw new ControllerException("Not all fields are filled!");
+                else {
+                    Load load = new Load();
+                    load.setLoadID(Integer.parseInt(loadID));
+                    load.setWeight(Integer.parseInt(weight));
+                    load.setCostOfDelivery(Integer.parseInt(costOfDelivery));
+                    switch (loadType) {
+                        case "dangerous":
+                            load.setLoadType(1);
+                            break;
+                        case "perishable":
+                            load.setLoadType(2);
+                            break;
+                        case "superheavy":
+                            load.setLoadType(3);
+                            break;
+                        case "alive":
+                            load.setLoadType(4);
+                            break;
+                        case "bulky":
+                            load.setLoadType(5);
+                            break;
+                        default:
+                            throw new ControllerException("Incorrect data!");
+                    }
+                    load.setLoadDescription(description);
+                    if (ModificationService.updateLoadService(load))
+                        return "Load updated!";
+                    else
+                        return "";
+                }
+            }
+        } catch (ServiceException ex) {
+            throw new ControllerException(ex.getMessage());
+        } catch (RuntimeException ex) {
+            throw new ControllerException("Incorrect input!");
+        }
+    }
+    public static String updateTransportController(HttpServletRequest request) throws ControllerException {
+        try {
+            if ((UserType) request.getSession().getAttribute("user_type") != UserType.DISPATCHER &&
+                    (UserType) request.getSession().getAttribute("user_type") != UserType.CLIENT)
+                throw  new ControllerException("You are not a dispatcher!");
+            else {
+                String state_number = request.getParameter("state_number");
+                String model = request.getParameter("model");
+                String tonnage = request.getParameter("tonnage");
+                String trailerType = request.getParameter("trailer_type");
+                String paymentForKilometer = request.getParameter("payment_for_kilometer");
+                if (state_number == null || model == null || tonnage == null || trailerType == null || paymentForKilometer == null ||
+                        state_number.equals("") || model.equals("") || tonnage.equals("") || trailerType.equals("") || paymentForKilometer.equals(""))
+                    throw new ControllerException("Not all fields are filled!");
+                else {
+                    Transport transport = new Transport();
+                    transport.setStateNumber(Integer.parseInt(state_number));
+                    transport.setModel(model);
+                    transport.setTonnage(Integer.parseInt(tonnage));
+                    transport.setPaymentForKilometer(Integer.parseInt(paymentForKilometer));
+                    switch (trailerType) {
+                        case "semi-trailer": transport.setTrailerType(1); break;
+                        case "refrigerator": transport.setTrailerType(2); break;
+                        case "open-platform": transport.setTrailerType(3); break;
+                        case "road-train": transport.setTrailerType(4); break;
+                        case "thermos": transport.setTrailerType(5); break;
+                        case "jumbo": transport.setTrailerType(6); break;
+                        default: throw new ControllerException("Incorrect data!");
+                    }
+                    if (ModificationService.updateTransportService(transport))
+                        return "Transport added!";
+                    else
+                        return "";
+                }
             }
         } catch (ServiceException ex) {
             throw new ControllerException(ex.getMessage());

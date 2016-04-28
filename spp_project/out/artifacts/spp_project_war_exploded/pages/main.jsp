@@ -26,16 +26,16 @@
                     if (request.getSession().getAttribute("user_type") != null)
                         userType = (UserType) request.getSession().getAttribute("user_type");
                     else
-                        userType = null;
-                    if (userType == null) { %>
+                        userType = UserType.VISITOR;
+                    if (userType == UserType.VISITOR) { %>
                         <form class="form-inline" action="main.jsp" method="post">
                             <input class="big-text-input" type="text" name="login" placeholder="login">
                             <input class="big-text-input" type="password" name="password" placeholder="password">
                             <button class="big-button" type="submit" name="enter" value="enter">Sign in</button>
-                            <button class="big-button" type="button" onclick="location.href='registration.jsp'">Registration</button>
+                            <button class="big-button" type="button">Registration</button>
                         </form>
                         <div class="result"><%=View.loginUserView(request)%></div> <!--Result of login-->
-                    <% } else if (userType != null) {
+                    <% } else if (userType != UserType.VISITOR) {
                         switch (userType) {
                             case ADMIN: { %> <button class="big-button" type="button" onclick="location.href='admin_account.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% } break;
                             case DISPATCHER: { %> <button class="big-button" type="button" onclick="location.href='main.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% } break;
@@ -54,9 +54,6 @@
             </div>
         </div>
 
-
-
-
         <!--Content-->
         <div id="content-panel">
             <div id="loads">
@@ -64,11 +61,12 @@
                 <div class="big-name"><h1>Loads</h1></div>
                 <table class="table">
                     <tr>
-                        <th>Load ID</th>
+                        <th>Stock number</th>
                         <th>Load weight</th>
                         <th>Cost of delivery</th>
                         <th>Load type</th>
                         <th>Description</th>
+                        <% if (userType == UserType.DISPATCHER || userType == UserType.CLIENT) { %><th></th><% } %>
                     </tr>
                     <%  List<Load> loadList = View.viewFreeLoadList();
                         for (int i=0;i<loadList.size();i++) { %>
@@ -78,6 +76,19 @@
                         <td><%=loadList.get(i).getCostOfDelivery()%>$</td>
                         <td><%=loadList.get(i).getLoadType().getLoadTypeName()%></td>
                         <td><%=loadList.get(i).getLoadDescription()%></td>
+                        <% if (userType == UserType.DISPATCHER) { %>
+                            <td>
+                                <form action="main.jsp" method="post">
+                                    <button class="button" type="submit" name="delete_load" value="<%=loadList.get(i).getLoadID()%>">Delete</button>
+                                </form>
+                            </td>
+                        <% } else if (userType == UserType.CLIENT) { %>
+                            <td>
+                                <form action="main.jsp" method="post">
+                                    <button class="button" type="submit" name="add_load" value="<%=loadList.get(i).getLoadID()%>">Add</button>
+                                </form>
+                            </td>
+                        <% } %>
                     </tr>
                     <% } %>
                 </table>
@@ -91,7 +102,7 @@
                                 <!--Add load-->
                                 <div class="add-element">
                                     <div class="big-name"><b>Add load</b></div>
-                                    <form class="form-inline" action="main.jsp" method="get" class="form-group">
+                                    <form class="form-inline" action="main.jsp" method="get">
                                         <div class="first-column">
                                             <input class="text-input" type="text" name="weight" placeholder="weight"><br>
                                             <input class="text-input" type="text" name="cost_of_delivery" placeholder="cost of delivery"><br>
@@ -107,28 +118,39 @@
                                         </div>
                                     </form>
                                 </div>
-
-                                <!--Remove load-->
-                                <div class="remove-element">
-                                    <div class="big-name"><b>Remove load</b></div>
-                                    <form class="form-inline" action="main.jsp" method="get" class="form-group">
-                                        <input class="text-input" type="text" name="load_id" placeholder="load id"><br>
-                                        <input class="button" type="submit" name="delete_load" value="delete"><br>
+                
+                                <!--Update load-->
+                                <div class="add-element">
+                                    <div class="big-name"><b>Update load</b></div>
+                                    <form class="form-inline" action="main.jsp" method="get">
+                                        <div class="first-column">
+                                            <select class="select" name="load_id" title="Stock number">
+                                                <% for (int i=0; i<loadList.size(); i++) { %>
+                                                    <option class="select" value="<%=loadList.get(i).getLoadID()%>"><%=loadList.get(i).getLoadID()%></option>
+                                                <% } %>
+                                            </select>
+                                            <input class="text-input" type="text" name="weight" placeholder="weight"><br>
+                                            <input class="text-input" type="text" name="cost_of_delivery" placeholder="cost of delivery"><br>
+                                            <textarea class="textarea-input" name="load_description" placeholder="description"></textarea>
+                                        </div>
+                                        <div class="second-column">
+                                            <input type="radio" name="load_type" value="dangerous" title="Dangerous">Dangerous<br>
+                                            <input type="radio" name="load_type" value="perishable" title="Perishable">Perishable<br>
+                                            <input type="radio" name="load_type" value="superheavy" title="Superheavy">Superheavy<br>
+                                            <input type="radio" name="load_type" value="alive" title="Alive">Alive<br>
+                                            <input type="radio" name="load_type" value="bulky" title="Bulky">Bulky<br>
+                                            <input class="button" type="submit" name="update_load" value="Update load">
+                                        </div>
                                     </form>
                                 </div>
+
                                 <div class="result"><%=View.addFreeLoadView(request)%></div><!--Add load result-->
+                                <div class="result"><%=View.updateLoadView(request)%></div><!--Update load result-->
                                 <div class="result"><%=View.removeLoadView(request)%></div><!--Remove load result-->
 
                                 <% } break;
                                     case CLIENT: { %>
                                 <!--Add load to client order-->
-                                <div class="add-element-to-client">
-                                    <div class="big-name"><b>Add load</b></div>
-                                    <form class="form-inline" action="main.jsp" method="get" class="form-group">
-                                        <input class="text-input" type="text" name="load_id" placeholder="load_id"><br>
-                                        <input class="button" type="submit" name="add_load" value="Add load"><br>
-                                    </form>
-                                </div>
                                 <div class="result"><%=View.addClientLoadView(request)%></div><!--Add load to client result-->
                                 <% }
                             }
@@ -146,6 +168,7 @@
                         <th>Tonnage</th>
                         <th>Trailer type</th>
                         <th>Payment for kilometer</th>
+                        <% if (userType == UserType.DISPATCHER || userType == UserType.CLIENT) { %><th></th><% } %>
                     </tr>
                     <%
                         List<Transport> transportList = View.viewFreeTransportList();
@@ -154,9 +177,22 @@
                     <tr>
                         <td><%=transportList.get(i).getStateNumber()%></td>
                         <td><%=transportList.get(i).getModel()%></td>
-                        <td><%=transportList.get(i).getTonnage()%></td>
+                        <td><%=transportList.get(i).getTonnage()%>t</td>
                         <td><%=transportList.get(i).getTrailerType().getTrailerTypeName()%></td>
-                        <td><%=transportList.get(i).getPaymentForKilometer()%></td>
+                        <td><%=transportList.get(i).getPaymentForKilometer()%>$</td>
+                        <% if (userType == UserType.DISPATCHER) { %>
+                        <td>
+                            <form action="main.jsp" method="post">
+                                <button class="button" type="submit" name="delete_transport" value="<%=transportList.get(i).getStateNumber()%>">Delete</button>
+                            </form>
+                        </td>
+                        <% } else if (userType == UserType.CLIENT) { %>
+                            <td>
+                                <form action="main.jsp" method="post">
+                                    <button class="button" type="submit" name="add_transport" value="<%=transportList.get(i).getStateNumber()%>">Add</button>
+                                </form>
+                            </td>
+                        <% } %>
                     </tr>
                     <% } %>
                 </table>
@@ -169,16 +205,16 @@
                             case DISPATCHER: { %>
                                 <!--Add transport by dispatcher form-->
                                 <div class="add-element">
-                                    <form class="form-inline" id="add-transport" action="main.jsp" method="get" class="form-group">
+                                    <form class="form-inline" action="main.jsp" method="get">
                                         <div class="first-column">
                                             <input class="text-input" type="text" name="state_number" placeholder="state number"><br>
                                             <input class="text-input" type="text" name="model" placeholder="model"><br>
                                             <input class="text-input" type="text" name="tonnage" placeholder="tonnage"><br>
-                                            <textarea class="textarea-input" name="payment_for_kilometer" placeholder="payment for kilometer"></textarea>
+                                            <input class="text-input" name="payment_for_kilometer" placeholder="payment for kilometer">
                                         </div>
                                         <div class="second-column">
                                             <input type="radio" name="trailer_type" value="semi-trailer">Semi-trailer<br>
-                                            <input type="radio" name="trailer_type" value="refrigerator">Refrigerator<br>
+                                            <input type="radio" name="trailer_type" value="refrigerator" title="Refrigerator">Refrigerator<br>
                                             <input type="radio" name="trailer_type" value="open-platform">Open-platform<br>
                                             <input type="radio" name="trailer_type" value="road-train">Road train<br>
                                             <input type="radio" name="trailer_type" value="thermos">Thermos<br>
@@ -188,32 +224,44 @@
                                     </form>
                                 </div>
 
-
-                                <!--Remove load form for dispatcher-->
-                                <div class="remove-element">
-                                    <form class="form-inline" action="main.jsp" method="get" class="form-group">
-                                        <input class="text-input" type="text" name="state_number" placeholder="state number">
-                                        <input class="button" type="submit" name="delete_transport" value="delete"><br>
+                                <!--Update transport-->
+                                <div class="add-element">
+                                    <form class="form-inline" action="main.jsp" method="get">
+                                        <div class="first-column">
+                                            <select class="select" name="state_number" title="Sate number">
+                                                <% for (int i=0; i<transportList.size(); i++) { %>
+                                                    <option class="select" value="<%=transportList.get(i).getStateNumber()%>"><%=transportList.get(i).getStateNumber()%></option>
+                                                <% } %>
+                                            </select>
+                                            <input class="text-input" type="text" name="model" placeholder="model"><br>
+                                            <input class="text-input" type="text" name="tonnage" placeholder="tonnage"><br>
+                                            <input class="text-input" name="payment_for_kilometer" placeholder="payment for kilometer">
+                                        </div>
+                                        <div class="second-column">
+                                            <input type="radio" name="trailer_type" value="semi-trailer">Semi-trailer<br>
+                                            <input type="radio" name="trailer_type" value="refrigerator">Refrigerator<br>
+                                            <input type="radio" name="trailer_type" value="open-platform">Open-platform<br>
+                                            <input type="radio" name="trailer_type" value="road-train">Road train<br>
+                                            <input type="radio" name="trailer_type" value="thermos">Thermos<br>
+                                            <input type="radio" name="trailer_type" value="jumbo">G-type<br>
+                                            <input class="button" type="submit" name="update_transport" value="Update transport"><br>
+                                        </div>
                                     </form>
                                 </div>
+
                                 <div class="result"><%=View.addFreeTransportView(request)%></div><!--Add transport result-->
+                                <div class="result"><%=View.updateTransportView(request)%></div><!--Update load result-->
                                 <div class="result"><%=View.removeTransportView(request)%></div><!--Remove transport result-->
+
                                 <% } break;
                                     case CLIENT: { %>
                                 <!--Add transport to client's order form-->
-                                <div class="add-element-to-client">
-                                    <form class="form-inline" action="main.jsp" method="get" class="form-group">
-                                        <input class="text-input" type="text" name="state_number" placeholder="state number">
-                                        <input class="button" type="submit" name="add_transport" value="Add transport"><br>
-                                    </form>
-                                </div>
                                 <div class="result"><%=View.addClientTransportView(request)%></div><!--Add transport to client result-->
                                 <% }
                                 }
                             } %>
             </div>
         </div>
-
 
         <!--Bottom-->
         <div id="bottom-panel">

@@ -69,12 +69,12 @@
                 <h1>Loads</h1>
                 <table>
                     <tr>
-                        <td>Load ID</td>
-                        <td>Load weight</td>
-                        <td>Cost of delivery</td>
-                        <td>Load type</td>
-                        <td>Description</td>
-                        <td></td>
+                        <th>Load ID</th>
+                        <th>Load weight</th>
+                        <th>Cost of delivery</th>
+                        <th>Load type</th>
+                        <th>Description</th>
+                        <% if (userType == UserType.CLIENT) { %><td></td><% } %>
                     </tr>
                     <%
                         List<Load> loadList = View.viewClientLoadList((String)request.getSession().getAttribute("login"));
@@ -86,19 +86,45 @@
                         <td><%=loadList.get(i).getCostOfDelivery()%></td>
                         <td><%=loadList.get(i).getLoadType().getLoadTypeName()%></td>
                         <td><%=loadList.get(i).getLoadDescription()%></td>
+                        <% if (userType == UserType.CLIENT) { %>
+                        <td>
+                            <form action="client_account.jsp" method="get">
+                                <button class="button" type="submit" name="delete_load" value="<%=loadList.get(i).getLoadID()%>">Delete</button>
+                            </form>
+                        </td>
+                        <% } %>
                     </tr>
                     <% } %>
                 </table><br><br>
             </div>
 
-            <!--Remove load form-->
-            <div id="remove_load">
-                <form action="client_account.jsp" method="get">
-                    <input type="text" name="load_id" placeholder="load id"><br>
-                    <input type="submit" name="delete_load" value="delete">
+            <!--Update load-->
+            <div class="add-element">
+                <div class="big-name"><b>Update load</b></div>
+                <form class="form-inline" action="client_account.jsp" method="get" class="form-group">
+                    <div class="first-column">
+                        <select name="load_id" title="Stock number">
+                            <% for (int i=0; i<loadList.size(); i++) { %>
+                            <option value="<%=loadList.get(i).getLoadID()%>"><%=loadList.get(i).getLoadID()%></option>
+                            <% } %>
+                        </select>
+                        <input class="text-input" type="text" name="weight" placeholder="weight"><br>
+                        <input class="text-input" type="text" name="cost_of_delivery" placeholder="cost of delivery"><br>
+                        <textarea class="textarea-input" name="load_description" placeholder="description"></textarea>
+                    </div>
+                    <div class="second-column">
+                        <input type="radio" name="load_type" value="dangerous" title="Dangerous">Dangerous<br>
+                        <input type="radio" name="load_type" value="perishable" title="Perishable">Perishable<br>
+                        <input type="radio" name="load_type" value="superheavy" title="Superheavy">Superheavy<br>
+                        <input type="radio" name="load_type" value="alive" title="Alive">Alive<br>
+                        <input type="radio" name="load_type" value="bulky" title="Bulky">Bulky<br>
+                        <button class="button" type="submit" name="update_load" value="Add load">Update load</button>
+                    </div>
                 </form>
-                <%=View.removeLoadView(request)%>
-            </div><br>
+            </div>
+
+            <div class="result"><%=View.updateLoadView(request)%></div><!--Update load result-->
+            <div class="result"><%=View.removeLoadView(request)%></div><!--Remove load result-->
 
             <!--User's transport table-->
             <div id="transports">

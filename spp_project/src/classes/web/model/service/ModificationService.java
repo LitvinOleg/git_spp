@@ -73,7 +73,20 @@ public class ModificationService {
         }
     }
 
-
+    public static boolean updateLoadService(Load load) throws ServiceException {
+        try {
+            return ModificationDao.updateLoad(load);
+        } catch (DaoException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+    public static boolean updateTransportService(Transport transport) throws ServiceException {
+        try {
+            return ModificationDao.updateTransport(transport);
+        } catch (DaoException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
 
     public static boolean removeUserService(String login) throws ServiceException {
         boolean result;

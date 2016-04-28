@@ -21,11 +21,13 @@ public class ModificationDao {
 
     private final static String INSERT_NEW_USER_STATEMENT = "INSERT INTO users(user_login, user_name, user_surname, user_password, user_type) VALUES ('%s', '%s', '%s', '%s', %d);";
     private final static String INSERT_NEW_CLIENT_STATEMENT = "INSERT INTO client(client_login, order_id) VALUES ('%s', %d);";
-    private final static String INSERT_NEW_ORDER_STATEMENT = "INSERT INTO orders(order_id) VALUE (%d);";
     private final static String INSERT_NEW_LOAD_TO_CLIENT_STATEMENT = "INSERT INTO order_load(order_id, load_id) VALUES ((SELECT order_id FROM client WHERE client_login='%s'), %d);";
     private final static String INSERT_NEW_TRANSPORT_TO_CLIENT_STATEMENT = "INSERT INTO order_transport(order_id, state_number) VALUES ((SELECT order_id FROM client WHERE client_login='%s'), %d);";
     private final static String INSERT_NEW_FREE_LOAD_STATEMENT = "INSERT INTO loads(weight, cost_of_delivery, load_type, load_description) VALUES (%d, %d, %d, '%s');";
     private final static String INSERT_NEW_TRANSPORT_STATEMENT = "INSERT INTO transport(state_number, model, tonnage, trailer_type, payment_for_kilometer) VALUES (%d, '%s', %d, %d, %d);";
+
+    private final static String UPDATE_LOAD_STATEMENT = "UPDATE loads SET weight = %d, cost_of_delivery = %d, load_type = %d, load_description = '%s' WHERE load_id = %d;";
+    private final static String UPDATE_TRANSPORT_STATEMENT = "UPDATE transport SET model = '%s', tonnage = %d, trailer_type = %d, payment_for_kilometer = %d WHERE state_number = %d;";
 
     private final static String SELECT_NON_EXISTING_ELEMENT_BY_ORDER_ID_STATEMENT = "SELECT * FROM %s WHERE %s NOT IN (select %s from %s) AND %s=%d;";
     private final static String SELECT_NON_EXISTING_LOAD_BY_LOAD_ID_STATEMENT = "SELECT * FROM loads where loads.load_id NOT IN (SELECT order_load.load_id FROM order_load) AND loads.load_id = %d;";
@@ -60,7 +62,6 @@ public class ModificationDao {
             int clientOrderID = client.getOrder().getOrderID();
             statement.executeUpdate(String.format(INSERT_NEW_USER_STATEMENT, login, name, surname, password, client.getUserType().getEnumValue()));
             statement.executeUpdate(String.format(INSERT_NEW_CLIENT_STATEMENT, login, clientOrderID));
-            statement.executeUpdate(String.format(INSERT_NEW_ORDER_STATEMENT, clientOrderID));
             result = true;
             connection.close();
             statement.close();
@@ -190,9 +191,35 @@ public class ModificationDao {
         }
     }
 
-
-
-
+    public static boolean updateLoad(Load load) throws DaoException {
+        try {
+            connection = DaoConnector.getInstance();
+            Statement statement = connection.createStatement();
+            statement.execute(String.format(UPDATE_LOAD_STATEMENT,
+                    load.getWeight(), load.getCostOfDelivery(),
+                    load.getLoadType().getEnumValue(), load.getLoadDescription(), load.getLoadID()));
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            throw new DaoException("Some problems with DB!");
+        }
+    }
+    public static boolean updateTransport(Transport transport) throws DaoException {
+        try {
+            connection = DaoConnector.getInstance();
+            Statement statement = connection.createStatement();
+            statement.execute(String.format(UPDATE_TRANSPORT_STATEMENT, transport.getModel(), transport.getTonnage(),
+                    transport.getTrailerType().getEnumValue(), transport.getPaymentForKilometer(), transport.getStateNumber()));
+            statement.close();
+            connection.close();
+            return true;
+        } catch (SQLException ex) {
+            throw new DaoException("Some problems with DB!");
+        } catch (DaoException ex) {
+            throw new DaoException(ex.getMessage());
+        }
+    }
 
     public static boolean deleteUser(String login) throws DaoException {
         boolean result;

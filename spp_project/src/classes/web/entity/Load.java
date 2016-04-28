@@ -56,6 +56,31 @@ public class Load {
         this.loadDescription = loadDescription;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Load load = (Load) o;
+
+        if (loadID != load.loadID) return false;
+        if (weight != load.weight) return false;
+        if (costOfDelivery != load.costOfDelivery) return false;
+        if (loadType != load.loadType) return false;
+        return loadDescription != null ? loadDescription.equals(load.loadDescription) : load.loadDescription == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = loadID;
+        result = 31 * result + weight;
+        result = 31 * result + costOfDelivery;
+        result = 31 * result + (loadType != null ? loadType.hashCode() : 0);
+        result = 31 * result + (loadDescription != null ? loadDescription.hashCode() : 0);
+        return result;
+    }
+
     /**
      * Enum for goods
      */
