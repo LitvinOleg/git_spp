@@ -1,0 +1,20 @@
+.secelct-upgrade select {
+    border-radius: 10px;
+    background: transparent;
+    height: 34px;
+    padding: 5px;
+    border: 0;
+    font-size: 16px;
+    line-height: 1;
+    -webkit-appearance: none;
+    width: 300px;
+}
+
+.secelct-upgrade {
+    border-radius: 10px;
+    border: 1px solid #97e4f7;
+    overflow: hidden; 
+    height: 34px;
+    background: url(images/arrow-down.png) no-repeat right #DDD;
+    width: 300px;
+   }
