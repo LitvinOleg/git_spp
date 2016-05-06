@@ -6,7 +6,7 @@
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.4">
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
       <schema id="1" name="spp_project_db"/>
       <table id="2" parent="1" name="client"/>
       <table id="3" parent="1" name="loads"/>
@@ -29,6 +29,7 @@
       <column id="11" parent="3" name="load_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
+        <sequence-identity>1</sequence-identity>
       </column>
       <column id="12" parent="3" name="weight">
         <mandatory>1</mandatory>

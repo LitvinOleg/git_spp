@@ -54,6 +54,30 @@ public class Transport {
         this.paymentForKilometer = paymentForKilometer;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Transport transport = (Transport) o;
+
+        if (stateNumber != transport.stateNumber) return false;
+        if (tonnage != transport.tonnage) return false;
+        if (paymentForKilometer != transport.paymentForKilometer) return false;
+        if (model != null ? !model.equals(transport.model) : transport.model != null) return false;
+        return trailerType == transport.trailerType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = stateNumber;
+        result = 31 * result + (model != null ? model.hashCode() : 0);
+        result = 31 * result + tonnage;
+        result = 31 * result + (trailerType != null ? trailerType.hashCode() : 0);
+        result = 31 * result + paymentForKilometer;
+        return result;
+    }
+
     /**
      * Enum of trailer types
      */

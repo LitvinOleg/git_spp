@@ -6,46 +6,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <title>Admin</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/elements.css">
 </head>
 <body>
     <!--Top-->
     <div id="top-panel">
-        <a href="main.jsp" id="main">Main</a><br>
+        <a id="main" href="main.jsp">
+            <img id="main-truck-image" src="images/truck.png" alt="Main" title="Main">
+        </a>
         <!--Login form-->
         <div id="login">
             <%  UserType userType;
                 if (request.getSession().getAttribute("user_type") != null)
                     userType = (UserType) request.getSession().getAttribute("user_type");
                 else
-                    userType = null;
-                if (userType == null) { %>
-                    <form action="admin_account.jsp" method="post">
-                        <input type="text" name="login" placeholder="login"><br>
-                        <input type="password" name="password" placeholder="password"><br>
-                        <input type="submit" name="enter" value="enter">
-                    </form>
-                    <div id="result">
-                        <%=View.loginUserView(request)%> <!--Result of login-->
-                    </div>
-                <a href="admin_account.jsp">Registration</a><br>
-                <% } else if (userType != null) {
-                    switch (userType) {
-                        case ADMIN: { %> <a href="admin_account.jsp"><%= request.getSession().getAttribute("login")  %></a> <% } break;
-                        case DISPATCHER: { %> <a href="main.jsp"><%= request.getSession().getAttribute("login")  %></a> <% } break;
-                        case CLIENT: { %> <a href="client_account.jsp"><%= request.getSession().getAttribute("login")  %></a> <% }
-                } %>
-
-                <!--Exit button-->
-                <form action="admin_account.jsp" method="post">
-                    <input type="submit" name="exit" value="exit">
-                    <% if (request.getParameter("exit") != null) {
-                        request.getSession().setAttribute("login", null);
-                        request.getSession().setAttribute("user_type", null);
-                    } %>
+                    userType = UserType.VISITOR;
+                if (userType == UserType.VISITOR) { %>
+                <form class="form-inline" action="registration.jsp" method="post">
+                    <input class="big-text-input" type="text" name="login" placeholder="login">
+                    <input class="big-text-input" type="password" name="password" placeholder="password">
+                    <button class="big-button" type="submit" name="enter" value="enter">Sign in</button>
+                    <button class="big-button" type="button" onclick="location.href='registration.jsp'">Registration</button>
                 </form>
+            <div class="result"><%=View.loginUserView(request)%></div> <!--Result of login-->
+            <% } else if (userType != UserType.VISITOR) {
+                switch (userType) {
+                    case ADMIN: { %> <button class="big-button" type="button" onclick="location.href='admin_account.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% } break;
+                case DISPATCHER: { %> <button class="big-button" type="button" onclick="location.href='main.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% } break;
+                case CLIENT: { %> <button class="big-button" type="button" onclick="location.href='client_account.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% }
+            } %>
+
+            <!--Exit button-->
+            <form class="form-inline" action="main.jsp" method="post">
+                <input class="big-button" type="submit" name="exit" value="exit">
+                <% if (request.getParameter("exit") != null) {
+                    request.getSession().setAttribute("login", null);
+                    request.getSession().setAttribute("user_type", null);
+                } %>
+            </form>
             <% } %>
         </div>
     </div>
@@ -57,11 +60,13 @@
                 (UserType)request.getSession().getAttribute("user_type") == UserType.ADMIN) { %>
             <!--Table of users-->
             <div id="view_users">
-                <table>
+                <table class="table">
                     <tr>
-                        <td>User login</td>
-                        <td>User name</td>
-                        <td>User type</td>
+                        <th>User login</th>
+                        <th>User name</th>
+                        <th>User surname</th>
+                        <th>User type</th>
+                        <th></th>
                     </tr>
                     <%
                         List<User> userList = View.viewAllUsersView(request);
@@ -69,7 +74,13 @@
                     <tr>
                         <td><%=userList.get(i).getLogin()%></td>
                         <td><%=userList.get(i).getName()%></td>
+                        <td><%=userList.get(i).getSurname()%></td>
                         <td><%=userList.get(i).getUserType().getUserType()%></td>
+                        <td>
+                            <form action="admin_account.jsp" method="get">
+                                <button class="delete-button" type="submit" name="delete_user" value="<%=userList.get(i).getLogin()%>">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     <% } %>
                 </table>
@@ -77,15 +88,15 @@
 
             <!--Registration form for admins and dispatchers-->
             <div id="registration">
-                Register user
+                <div class="big-name">Register user</div>
                 <form action="admin_account.jsp" method="post">
-                    <input type="text" name="login" placeholder="login"><br>
-                    <input type="text" name="name" placeholder="user name"><br>
-                    <input type="text" name="surname" placeholder="user surname"><br>
-                    <input type="password" name="password" placeholder="password"><br>
-                    <input type="radio" name="user_type" value="admin">Admin<br>
-                    <input type="radio" name="user_type" value="dispatcher">Dispatcher<br>
-                    <input type="submit" name="registration" value="registration"><br>
+                    <input class="text-input" type="text" name="login" placeholder="login"><br>
+                    <input class="text-input" type="text" name="name" placeholder="user name"><br>
+                    <input class="text-input" type="text" name="surname" placeholder="user surname"><br>
+                    <input class="text-input" type="password" name="password" placeholder="password"><br>
+                    <input type="radio" name="user_type" value="admin" title="Admin">Admin<br>
+                    <input type="radio" name="user_type" value="dispatcher" title="Dispatcher">Dispatcher<br>
+                    <input class="button" type="submit" name="registration" value="registration"><br>
                 </form>
                 <%
                     if (request.getParameter("registration") != null ) {
@@ -101,16 +112,7 @@
                 <%=View.registerUserView(request, userType)%>
                 <% } %>
             </div><br><br><br>
-
-            <!--Delete user form-->
-            <div id="delete">
-                Delete user
-                <form action="admin_account.jsp" method="get">
-                    <input type="text" name="login" placeholder="login"><br>
-                    <input type="submit" name="delete" value="delete"><br>
-                </form>
-                <%=View.removeUserView(request)%>
-            </div>
+            <div class="result"><%=View.removeUserView(request)%></div>
         <% } %>
     </div>
 

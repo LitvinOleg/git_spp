@@ -16,16 +16,20 @@ import static classes.web.entity.user.User.*;
 public class ModificationController {
     private static final String HAVE_BEEN_CREATED_FORMAT = "The %s-%s have been created!";
 
-    public static String AddNewUserController(HttpServletRequest request, UserType userType) throws ControllerException{
+    public static String AddNewUserController(HttpServletRequest request, UserType userType) throws ControllerException {
         String result = "";
+        String adminLogin = (String) request.getSession().getAttribute("login");
         String login = request.getParameter("login");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirm");
         try {
-            if (login == null || name == null || surname == null || password == null ||
-                login.equals("") || name.equals("") || surname.equals("") || password.equals(""))
-                throw new ControllerException ("Not all fields are field!");
+            if (login == null || name == null || surname == null || password == null || confirmPassword == null ||
+                login.equals("") || name.equals("") || surname.equals("") || password.equals("") || confirmPassword.equals(""))
+                    throw new ControllerException ("Not all fields are field!");
+            if (!confirmPassword.equals(password))
+                throw new ControllerException("Inc");
             switch (userType) {
                 case CLIENT: {
                     Client client = new Client();
@@ -42,7 +46,7 @@ public class ModificationController {
                     dispatcher.setName(name);
                     dispatcher.setSurname(surname);
                     dispatcher.setPassword(password);
-                    if (ModificationService.addNewDispatcherService(dispatcher))
+                    if (ModificationService.addNewDispatcherService(dispatcher, adminLogin))
                         result = String.format(HAVE_BEEN_CREATED_FORMAT, "dispatcher", login);
                 } break;
                 case ADMIN: {
@@ -51,7 +55,7 @@ public class ModificationController {
                     admin.setName(name);
                     admin.setSurname(surname);
                     admin.setPassword(password);
-                    if (ModificationService.addNewAdminService(admin))
+                    if (ModificationService.addNewAdminService(admin, adminLogin))
                         result = String.format(HAVE_BEEN_CREATED_FORMAT, "admin", login);
                 } break;
                 case VISITOR: throw new ControllerException("User type isn't chosen!");
@@ -65,12 +69,12 @@ public class ModificationController {
     public static String removeUserController(HttpServletRequest request) throws ControllerException {
         String result = "";
         try {
-            String login = request.getParameter("login");
+            String login = request.getParameter("delete_user");
             String adminLogin = request.getSession().getAttribute("login").toString();
             if (!login.equals("")) {
                 if (login.equals(adminLogin))
                     throw new ControllerException("Can't remove itself!");
-                if (ModificationService.removeUserService(login))
+                if (ModificationService.removeUserService(login, adminLogin))
                     result = String.format("User - %s deleted!", login);
             } else
                 throw new ControllerException("Login field isn't filled!");
@@ -91,7 +95,7 @@ public class ModificationController {
                     return ModificationService.removeClientLoadService(loadId, login);
                 }
                 case DISPATCHER: {
-                    return ModificationService.removeFreeLoadService(loadId);
+                    return ModificationService.removeFreeLoadService(loadId, login);
                 }
             }
         } catch (ControllerException | ServiceException | RuntimeException ex) {
@@ -109,7 +113,7 @@ public class ModificationController {
                     return ModificationService.removeClientTransportService(state_number, login);
                 }
                 case DISPATCHER: {
-                    return ModificationService.removeFreeTransportService(state_number);
+                    return ModificationService.removeFreeTransportService(state_number, login);
                 }
             }
         } catch (ServiceException ex) {
@@ -136,12 +140,13 @@ public class ModificationController {
             if ((UserType) request.getSession().getAttribute("user_type") != UserType.DISPATCHER)
                 throw  new ControllerException("You are not a dispatcher!");
             else {
+                String dispatcherLogin = (String) request.getSession().getAttribute("login");
                 String weight = request.getParameter("weight");
                 String costOfDelivery = request.getParameter("cost_of_delivery");
                 String loadType = request.getParameter("load_type");
                 String description = request.getParameter("load_description");
-                if (weight == null || costOfDelivery == null || loadType == null || description == null ||
-                        weight.equals("") || costOfDelivery.equals("") || loadType.equals("") || description.equals(""))
+                if (dispatcherLogin == null || weight == null || costOfDelivery == null || loadType == null || description == null ||
+                        dispatcherLogin.equals("") || weight.equals("") || costOfDelivery.equals("") || loadType.equals("") || description.equals(""))
                     throw new ControllerException("Not all fields are filled!");
                 else {
                     Load load = new Load();
@@ -167,7 +172,7 @@ public class ModificationController {
                             throw new ControllerException("Incorrect data!");
                     }
                     load.setLoadDescription(description);
-                    if (ModificationService.addFreeLoadService(load))
+                    if (ModificationService.addFreeLoadService(load, dispatcherLogin))
                         return "Load added!";
                     else
                         return "";
@@ -192,13 +197,14 @@ public class ModificationController {
     }
     public static String addFreeTransportController(HttpServletRequest request) throws ControllerException {
         try {
+            String dispatcherLogin = (String) request.getSession().getAttribute("login");
             String state_number = request.getParameter("state_number");
             String model = request.getParameter("model");
             String tonnage = request.getParameter("tonnage");
             String trailerType = request.getParameter("trailer_type");
             String paymentForKilometer = request.getParameter("payment_for_kilometer");
-            if (state_number == null || model == null || tonnage == null || trailerType == null || paymentForKilometer == null ||
-                    state_number.equals("") || model.equals("") || tonnage.equals("") || trailerType.equals("") || paymentForKilometer.equals(""))
+            if (dispatcherLogin == null || state_number == null || model == null || tonnage == null || trailerType == null || paymentForKilometer == null ||
+                    dispatcherLogin.equals("") || state_number.equals("") || model.equals("") || tonnage.equals("") || trailerType.equals("") || paymentForKilometer.equals(""))
                 throw new ControllerException("Not all fields are filled!");
             else {
                 Transport transport = new Transport();
@@ -215,7 +221,7 @@ public class ModificationController {
                     case "jumbo": transport.setTrailerType(6); break;
                     default: throw new ControllerException("Incorrect data!");
                 }
-                if (ModificationService.addFreeTransportService(transport))
+                if (ModificationService.addFreeTransportService(transport, dispatcherLogin))
                     return "Transport added!";
                 else
                     return "";
@@ -233,6 +239,7 @@ public class ModificationController {
                 (UserType) request.getSession().getAttribute("user_type") != UserType.CLIENT)
                     throw  new ControllerException("You are not a dispatcher!");
             else {
+                String dispatcherLogin = (String) request.getSession().getAttribute("login");
                 String loadID = request.getParameter("load_id");
                 String weight = request.getParameter("weight");
                 String costOfDelivery = request.getParameter("cost_of_delivery");
@@ -266,8 +273,8 @@ public class ModificationController {
                             throw new ControllerException("Incorrect data!");
                     }
                     load.setLoadDescription(description);
-                    if (ModificationService.updateLoadService(load))
-                        return "Load updated!";
+                    if (ModificationService.updateLoadService(load, dispatcherLogin))
+                        return "Load" + loadID + "updated!";
                     else
                         return "";
                 }
@@ -284,6 +291,7 @@ public class ModificationController {
                     (UserType) request.getSession().getAttribute("user_type") != UserType.CLIENT)
                 throw  new ControllerException("You are not a dispatcher!");
             else {
+                String dispatcherLogin = (String) request.getSession().getAttribute("login");
                 String state_number = request.getParameter("state_number");
                 String model = request.getParameter("model");
                 String tonnage = request.getParameter("tonnage");
@@ -307,7 +315,7 @@ public class ModificationController {
                         case "jumbo": transport.setTrailerType(6); break;
                         default: throw new ControllerException("Incorrect data!");
                     }
-                    if (ModificationService.updateTransportService(transport))
+                    if (ModificationService.updateTransportService(transport, dispatcherLogin))
                         return "Transport added!";
                     else
                         return "";

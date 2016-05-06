@@ -13,8 +13,20 @@
       <meta charset="utf-8">
       <link rel="stylesheet" href="css/main.css">
       <link rel="stylesheet" href="css/elements.css">
+      <script type="text/javascript" src="js/main.js"></script>
   </head>
   <body>
+        <%
+            View.loginUserView(request);
+            View.addFreeLoadView(request);
+            View.updateLoadView(request);
+            View.removeLoadView(request);
+            View.addClientLoadView(request);
+            View.addFreeTransportView(request);
+            View.updateTransportView(request);
+            View.removeTransportView(request);
+            View.addClientTransportView(request);
+        %>
         <!--Top-->
         <div id="top-panel">
             <a id="main" href="main.jsp">
@@ -32,7 +44,7 @@
                             <input class="big-text-input" type="text" name="login" placeholder="login">
                             <input class="big-text-input" type="password" name="password" placeholder="password">
                             <button class="big-button" type="submit" name="enter" value="enter">Sign in</button>
-                            <button class="big-button" type="button">Registration</button>
+                            <button class="big-button" type="button" onclick="location.href='registration.jsp'">Registration</button>
                         </form>
                         <div class="result"><%=View.loginUserView(request)%></div> <!--Result of login-->
                     <% } else if (userType != UserType.VISITOR) {
@@ -40,7 +52,7 @@
                             case ADMIN: { %> <button class="big-button" type="button" onclick="location.href='admin_account.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% } break;
                             case DISPATCHER: { %> <button class="big-button" type="button" onclick="location.href='main.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% } break;
                             case CLIENT: { %> <button class="big-button" type="button" onclick="location.href='client_account.jsp'"><%= request.getSession().getAttribute("login")  %></button> <% }
-                        } %>
+                    } %>
 
                         <!--Exit button-->
                         <form class="form-inline" action="main.jsp" method="post">
@@ -58,7 +70,7 @@
         <div id="content-panel">
             <div id="loads">
                 <!--Load table-->
-                <div class="big-name"><h1>Loads</h1></div>
+                <div class="big-name">Loads</div>
                 <table class="table">
                     <tr>
                         <th>Stock number</th>
@@ -79,13 +91,13 @@
                         <% if (userType == UserType.DISPATCHER) { %>
                             <td>
                                 <form action="main.jsp" method="post">
-                                    <button class="button" type="submit" name="delete_load" value="<%=loadList.get(i).getLoadID()%>">Delete</button>
+                                    <button class="delete-button" type="submit" name="delete_load" value="<%=loadList.get(i).getLoadID()%>">Delete</button>
                                 </form>
                             </td>
                         <% } else if (userType == UserType.CLIENT) { %>
                             <td>
                                 <form action="main.jsp" method="post">
-                                    <button class="button" type="submit" name="add_load" value="<%=loadList.get(i).getLoadID()%>">Add</button>
+                                    <button class="add-button" type="submit" name="add_load" value="<%=loadList.get(i).getLoadID()%>">Add</button>
                                 </form>
                             </td>
                         <% } %>
@@ -150,8 +162,8 @@
 
                                 <% } break;
                                     case CLIENT: { %>
-                                <!--Add load to client order-->
-                                <div class="result"><%=View.addClientLoadView(request)%></div><!--Add load to client result-->
+                                    <!--Add load to client order-->
+                                    <div class="result"><%=View.addClientLoadView(request)%></div><!--Add load to client result-->
                                 <% }
                             }
                         } %>
@@ -160,7 +172,7 @@
 
             <div id="transports">
                 <!--Transports table-->
-                <div class="big-name"><h1>Transports</h1></div>
+                <div class="big-name">Transports</div>
                 <table class="table">
                     <tr>
                         <th>State number</th>
@@ -183,13 +195,13 @@
                         <% if (userType == UserType.DISPATCHER) { %>
                         <td>
                             <form action="main.jsp" method="post">
-                                <button class="button" type="submit" name="delete_transport" value="<%=transportList.get(i).getStateNumber()%>">Delete</button>
+                                <button class="delete-button" type="submit" name="delete_transport" value="<%=transportList.get(i).getStateNumber()%>">Delete</button>
                             </form>
                         </td>
                         <% } else if (userType == UserType.CLIENT) { %>
                             <td>
                                 <form action="main.jsp" method="post">
-                                    <button class="button" type="submit" name="add_transport" value="<%=transportList.get(i).getStateNumber()%>">Add</button>
+                                    <button class="add-button" type="submit" name="add_transport" value="<%=transportList.get(i).getStateNumber()%>">Add</button>
                                 </form>
                             </td>
                         <% } %>

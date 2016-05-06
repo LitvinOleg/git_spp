@@ -147,6 +147,7 @@ public class GetInformationDao {
                 User user = new User();
                 user.setLogin(resultUsers.getString("user_login"));
                 user.setName(resultUsers.getString("user_name"));
+                user.setSurname(resultUsers.getString("user_surname"));
                 user.setUserType(resultUsers.getInt("user_type"));
                 userList.add(user);
             }

@@ -4,6 +4,7 @@ import classes.web.entity.Load;
 import classes.web.entity.Transport;
 import classes.web.entity.user.Admin;
 import classes.web.entity.user.Dispatcher;
+import classes.web.entity.user.User;
 import classes.web.model.dao.connection.DaoConnector;
 import classes.web.entity.user.Client;
 import classes.web.model.dao.exception.DaoException;
@@ -37,6 +38,8 @@ public class ModificationDao {
     private final static String SELECT_TRANSPORT_BY_STATE_NUMBER_AND_LOGIN_STATEMENT ="SELECT * FROM transport INNER JOIN order_transport ON transport.state_number = order_transport.state_number INNER JOIN client ON order_transport.order_id = client.order_id WHERE transport.state_number = %d AND client.client_login = '%s';";
     private final static String SELECT_ORDER_ID_STATEMENT = "SELECT client.order_id FROM client WHERE client_login = '%s';";
     private final static String SELECT_TRANSPORT_BY_STATE_NUMBER_STATEMENT = "SELECT * FROM transport WHERE transport.state_number = %d";
+    private final static String SELECT_USER_BY_LOGIN_AND_TYPE_STATEMENT = "SELECT * FROM users WHERE user_login='%s' AND user_type=%d";
+    private final static String SELECT_LOAD_BY_ID_STATEMENT = "SELECT * FROM loads WHERE load_id=%d;";
 
     private final static String DELETE_LOAD_BY_ID_STATEMENT = "DELETE FROM loads WHERE loads.load_id = %d;";
     private final static String DELETE_TRANSPORT_BY_ID_STATEMENT = "DELETE FROM transport WHERE transport.state_number = %d;;";
@@ -72,7 +75,7 @@ public class ModificationDao {
         }
         return result;
     }
-    public static boolean insertNewDispatcher(Dispatcher dispatcher) throws DaoException {
+    public static boolean insertNewDispatcher(Dispatcher dispatcher, String adminLogin) throws DaoException {
         boolean result;
         String login = dispatcher.getLogin();
         String name = dispatcher.getName();
@@ -81,6 +84,8 @@ public class ModificationDao {
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            if (ModificationDao.hasUserInDb(adminLogin, User.UserType.ADMIN, statement))
+                throw new DaoException("Don't have rights to make the statement!");
             ResultSet usersLogin = statement.executeQuery(String.format(SELECT_USER_LOGIN_STATEMENT, login));
             if (usersLogin.next())
                 throw new IllegalArgumentException("Current user already exists!");
@@ -95,7 +100,7 @@ public class ModificationDao {
         }
         return result;
     }
-    public static boolean insertNewAdmin(Admin admin) throws DaoException {
+    public static boolean insertNewAdmin(Admin admin, String adminLogin) throws DaoException {
         boolean result;
         String login = admin.getLogin();
         String name = admin.getName();
@@ -104,6 +109,8 @@ public class ModificationDao {
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            if (!ModificationDao.hasUserInDb(adminLogin, User.UserType.ADMIN, statement))
+                throw new DaoException("Don't have rights to make the statement!");
             ResultSet usersLogin = statement.executeQuery(String.format(SELECT_USER_LOGIN_STATEMENT, login));
             if (usersLogin.next())
                 throw new IllegalArgumentException("Current user already exists!");
@@ -138,10 +145,11 @@ public class ModificationDao {
         }
         return result;
     }
-    public static boolean insertFreeLoad(Load load) throws DaoException {
+    public static boolean insertFreeLoad(Load load, String login) throws DaoException {
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            ModificationDao.hasUserInDb(login, User.UserType.DISPATCHER, statement);
             statement.execute(String.format(INSERT_NEW_FREE_LOAD_STATEMENT,
                     load.getWeight(), load.getCostOfDelivery(),
                     load.getLoadType().getEnumValue(), load.getLoadDescription()));
@@ -172,10 +180,12 @@ public class ModificationDao {
         }
         return result;
     }
-    public static boolean insertFreeTransport(Transport transport) throws DaoException {
+    public static boolean insertFreeTransport(Transport transport, String login) throws DaoException {
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            if (!ModificationDao.hasUserInDb(login, User.UserType.DISPATCHER, statement))
+                throw new DaoException("Don't have rights to make the statement!");
             ResultSet resultTransport = statement.executeQuery(String.format(SELECT_TRANSPORT_BY_STATE_NUMBER_STATEMENT, transport.getStateNumber()));
             if (resultTransport.next())
                 throw new DaoException("Current transport already exists!");
@@ -191,10 +201,15 @@ public class ModificationDao {
         }
     }
 
-    public static boolean updateLoad(Load load) throws DaoException {
+    public static boolean updateLoad(Load load, String login) throws DaoException {
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(String.format(SELECT_LOAD_BY_ID_STATEMENT, load.getLoadID()));
+            if (!result.next())
+                throw new DaoException("Incorrect input!");;
+            if (!ModificationDao.hasUserInDb(login, User.UserType.DISPATCHER, statement))
+                throw new DaoException("Don't have rights to make the statement!");
             statement.execute(String.format(UPDATE_LOAD_STATEMENT,
                     load.getWeight(), load.getCostOfDelivery(),
                     load.getLoadType().getEnumValue(), load.getLoadDescription(), load.getLoadID()));
@@ -205,10 +220,12 @@ public class ModificationDao {
             throw new DaoException("Some problems with DB!");
         }
     }
-    public static boolean updateTransport(Transport transport) throws DaoException {
+    public static boolean updateTransport(Transport transport, String login) throws DaoException {
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            if (!ModificationDao.hasUserInDb(login, User.UserType.DISPATCHER, statement))
+                throw new DaoException("Don't have rights to make the statement!");
             statement.execute(String.format(UPDATE_TRANSPORT_STATEMENT, transport.getModel(), transport.getTonnage(),
                     transport.getTrailerType().getEnumValue(), transport.getPaymentForKilometer(), transport.getStateNumber()));
             statement.close();
@@ -221,11 +238,13 @@ public class ModificationDao {
         }
     }
 
-    public static boolean deleteUser(String login) throws DaoException {
+    public static boolean deleteUser(String login, String adminLogin) throws DaoException {
         boolean result;
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            if (!ModificationDao.hasUserInDb(adminLogin, User.UserType.ADMIN, statement))
+                throw new DaoException("Don't have rights to make the statement!");
             ResultSet resultUsers = statement.executeQuery(String.format(SELECT_USER_LOGIN_STATEMENT, login));
             if (resultUsers.next()) {
                 statement.execute(String.format(DELETE_USER_STATEMENT, login));
@@ -266,11 +285,13 @@ public class ModificationDao {
         }
         return result;
     }
-    public static boolean deleteFreeLoad(int loadID) throws DaoException {
+    public static boolean deleteFreeLoad(int loadID, String login) throws DaoException {
         boolean result = false;
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            if (!ModificationDao.hasUserInDb(login, User.UserType.DISPATCHER, statement))
+                throw new DaoException("Don't have rights to make the statement");
             ResultSet resultLoad = statement.executeQuery(String.format(SELECT_NON_EXISTING_LOAD_BY_LOAD_ID_STATEMENT, loadID));
             if (resultLoad.next()) {
                 statement.execute(String.format(DELETE_LOAD_BY_ID_STATEMENT, loadID));
@@ -305,11 +326,13 @@ public class ModificationDao {
         }
         return result;
     }
-    public static boolean deleteFreeTransport(int state_number) throws DaoException {
+    public static boolean deleteFreeTransport(int state_number, String login) throws DaoException {
         boolean result = false;
         try {
             connection = DaoConnector.getInstance();
             Statement statement = connection.createStatement();
+            if (!ModificationDao.hasUserInDb(login, User.UserType.DISPATCHER, statement))
+                throw new DaoException("Don't have rights to make the statement");
             ResultSet resultLoad = statement.executeQuery(String.format(SELECT_NON_EXISTING_TRANSPORT_BY_STATE_NUMBER_STATEMENT, state_number));
             if (resultLoad.next()) {
                 statement.execute(String.format(DELETE_TRANSPORT_BY_ID_STATEMENT, state_number));
@@ -323,5 +346,18 @@ public class ModificationDao {
             throw new DaoException(ex.getMessage());
         }
         return result;
+    }
+
+    private static boolean hasUserInDb(String userLogin, User.UserType userType, Statement statement) {
+        try {
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(String.format(SELECT_USER_BY_LOGIN_AND_TYPE_STATEMENT, userLogin, userType.getEnumValue()));
+            if (result.next())
+                return true;
+            else
+                return false;
+        } catch (Exception ignored) {
+            return false;
+        }
     }
 }

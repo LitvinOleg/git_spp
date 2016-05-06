@@ -14,9 +14,6 @@ body {
     scrollbar-arrow-color: rgba(255, 255, 255, 0);
 }
 
-
-
-
 /* Top */
 #top-panel {
     position: fixed;
@@ -32,11 +29,13 @@ body {
 }
 #main {
     display: inline-block;
+    float: left;
 }
 #main-truck-image {
     margin-left: 30px;
     height: 60px;
     width: 140px;
+    float: left;
 }
 #login {
     display: block;
@@ -45,15 +44,13 @@ body {
     width: auto;
 }
 
-
-
 /* Content */
 #content-panel {
     position: absolute;
     top: 100px;
     bottom: 20px;
     left: 10%;
-    background: rgba(255, 255, 255, 0.90);
+    background: rgba(255, 255, 255, 0.80);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 80%;
     height: auto;
@@ -81,6 +78,7 @@ body {
     width: 30%;
     height: 200px;
     display: inline-block;
+    float: left;
 }
 .add-element-to-client {
     margin-left: 5%;
@@ -88,8 +86,6 @@ body {
     height: auto;
     display: block;
 }
-
-
 
 /* Bottom */
 #bottom-panel {
@@ -104,12 +100,7 @@ body {
     z-index: 9;
 }
 
-
-
 /* Other */
-.big-name {
-    margin-left: 7%;
-}
 .first-column {
     margin: 5px;
     display: block;
@@ -119,9 +110,4 @@ body {
     margin: 5px;
     display: block;
     float: left;
-}
-.result {
-    padding: 3px;
-    border-radius: 3px;
-    right: 230px;
 }

@@ -45,4 +45,25 @@ public class Order {
         Date date = new Date();
         this.orderID = (int) (date.getTime()/1000);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (orderID != order.orderID) return false;
+        if (loadList != null ? !loadList.equals(order.loadList) : order.loadList != null) return false;
+        return transportList != null ? transportList.equals(order.transportList) : order.transportList == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = orderID;
+        result = 31 * result + (loadList != null ? loadList.hashCode() : 0);
+        result = 31 * result + (transportList != null ? transportList.hashCode() : 0);
+        return result;
+    }
 }

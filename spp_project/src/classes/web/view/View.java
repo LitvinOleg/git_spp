@@ -40,7 +40,7 @@ public class View {
     public static String removeUserView(HttpServletRequest request) {
         String result = "";
         try {
-            if (request.getParameter("delete") != null)
+            if (request.getParameter("delete_user") != null)
                 result = ModificationController.removeUserController(request);
         } catch (ControllerException ex) {
             result = ex.getMessage();

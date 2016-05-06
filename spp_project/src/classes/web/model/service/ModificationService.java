@@ -22,19 +22,19 @@ public class ModificationService {
         }
         return result;
     }
-    public static boolean addNewDispatcherService(Dispatcher dispatcher) throws ServiceException {
+    public static boolean addNewDispatcherService(Dispatcher dispatcher, String login) throws ServiceException {
         boolean result;
         try {
-            result = ModificationDao.insertNewDispatcher(dispatcher);
+            result = ModificationDao.insertNewDispatcher(dispatcher, login);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
         }
         return result;
     }
-    public static boolean addNewAdminService(Admin admin) throws ServiceException {
+    public static boolean addNewAdminService(Admin admin, String login) throws ServiceException {
         boolean result;
         try {
-            result = ModificationDao.insertNewAdmin(admin);
+            result = ModificationDao.insertNewAdmin(admin, login);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
         }
@@ -49,9 +49,9 @@ public class ModificationService {
         }
         return "";
     }
-    public static boolean addFreeLoadService(Load load) throws ServiceException {
+    public static boolean addFreeLoadService(Load load, String login) throws ServiceException {
         try {
-            return ModificationDao.insertFreeLoad(load);
+            return ModificationDao.insertFreeLoad(load, login);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
         }
@@ -65,33 +65,33 @@ public class ModificationService {
         }
         return "";
     }
-    public static boolean addFreeTransportService(Transport transport) throws  ServiceException {
+    public static boolean addFreeTransportService(Transport transport, String login) throws  ServiceException {
         try {
-            return ModificationDao.insertFreeTransport(transport);
+            return ModificationDao.insertFreeTransport(transport, login);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
         }
     }
 
-    public static boolean updateLoadService(Load load) throws ServiceException {
+    public static boolean updateLoadService(Load load, String login) throws ServiceException {
         try {
-            return ModificationDao.updateLoad(load);
+            return ModificationDao.updateLoad(load, login);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
         }
     }
-    public static boolean updateTransportService(Transport transport) throws ServiceException {
+    public static boolean updateTransportService(Transport transport, String login) throws ServiceException {
         try {
-            return ModificationDao.updateTransport(transport);
+            return ModificationDao.updateTransport(transport, login);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
         }
     }
 
-    public static boolean removeUserService(String login) throws ServiceException {
+    public static boolean removeUserService(String login, String adminLogin) throws ServiceException {
         boolean result;
         try {
-            result = ModificationDao.deleteUser(login);
+            result = ModificationDao.deleteUser(login, adminLogin);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
         }
@@ -106,9 +106,9 @@ public class ModificationService {
         }
         return "";
     }
-    public static String removeFreeLoadService(int loadID) throws ServiceException {
+    public static String removeFreeLoadService(int loadID, String login) throws ServiceException {
         try {
-            if (ModificationDao.deleteFreeLoad(loadID))
+            if (ModificationDao.deleteFreeLoad(loadID, login))
                 return String.format("The load - %s removed!", loadID);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
@@ -124,9 +124,9 @@ public class ModificationService {
         }
         return "";
     }
-    public static String removeFreeTransportService(int state_number) throws ServiceException {
+    public static String removeFreeTransportService(int state_number, String login) throws ServiceException {
         try {
-            if (ModificationDao.deleteFreeTransport(state_number))
+            if (ModificationDao.deleteFreeTransport(state_number, login))
                 return String.format("The transport - %s removed!", state_number);
         } catch (DaoException ex) {
             throw new ServiceException(ex.getMessage());
