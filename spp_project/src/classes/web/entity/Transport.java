@@ -66,6 +66,7 @@ public class Transport {
         if (paymentForKilometer != transport.paymentForKilometer) return false;
         if (model != null ? !model.equals(transport.model) : transport.model != null) return false;
         return trailerType == transport.trailerType;
+
     }
 
     @Override

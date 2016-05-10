@@ -1,0 +1,158 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    font-size: 21px;
+	margin 0;
+    padding 0;
+    background-image: url(images/mainPic.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    width: 100%;
+
+}
+.formRow{
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+.formRow input
+{
+    margin: 0;
+    outline: none;
+    border: none;
+    padding: 10px;
+    float: right;
+    height: 20px;
+    line-height: 19px;
+    padding: 20px 15px 20px 15px;
+    width: 330px;
+    font-size: 14px;
+    font-family: SanFrancisco, Arial;
+}
+
+.formRow input[type="text"]{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #bebebe;
+}
+
+.logForm{
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 2px;
+    background-color: #000000;
+    padding: 0px;
+    width:330px;
+    height: 120px;
+}
+
+.formRow input[type="submit"]{
+    margin-top: -35px;
+    height: 15px;
+    width: 15px;
+    outline: none;
+    border: none;
+    background: url(images/Unknown.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.navbar{
+    margin: 0;
+    border: 2px solid #000000;
+    height: 50px;
+    line-height: 32px;
+    width: 100%;
+    margin-bottom: 30px;
+    background: rgb(0, 0, 0);
+    display: block;
+}
+
+.navbar {
+    display: inline-block;
+}
+
+.rememberMe
+{
+    margin-bottom: 0px;
+    height: 15px;   
+    width: 100%;
+    display: inline-block;
+    font-size: 16px;
+    color: #eee;
+}
+
+.rememberMe ul{
+    float: right;
+    display: inline-block;
+}
+
+.rememberMe ul li{
+    margin-top: -20px;
+    list-style: none;
+}
+
+img{
+    width: 53px;
+    height: 
+}
+
+h1{
+    color: rgb(216, 216, 216);
+}
+
+#footer {
+    text-align: center;
+    position: fixed;
+    left: 0; bottom: 0;
+    padding: 10px; 
+    background: #000000; 
+    color: rgb(216,216,216);
+    width: 100%;
+   }
+h1 span{
+    margin-left: 80px;
+    display: inline-block;
+    position: relative;
+    top: -1.5em;
+}    
+
+
+
+#log{
+    margin-top: -70px;
+    float: right;
+    color: aliceblue;
+}
+
+.content img{
+    width: 400px;
+    float: right;
+}
+
+.razmit{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.login {
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+
+.login::before{
+background-image:url('images/mainPic.jpg');
+}
+
+.login::before{
+background-image:url('images/mainPic.jpg');
+filter:blur(5px);
+}

@@ -1,0 +1,59 @@
+<!-- <%@ page import="classes.web.view.View" %><%--
+  Created by IntelliJ IDEA.
+  User: Олег
+  Date: 09.04.2016
+  Time: 17:05
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %> -->
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+   <meta charset=UTF-8>
+    <link rel="stylesheet" href="css/icono/icono.css">
+    <link rel="stylesheet" href="css/style_login.css">
+    <title>Login</title>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="css/images/logot.jpg" alt="">
+        <h1><span> LEL Logistic.</span></h1>
+        <p id="log">LOGIN</p>
+    </nav>
+    <script type="text/javascript">
+        $('p#log').click(function (){
+            $('').css({'opacity': 0, 'visibility': 'hidden'});
+        });
+        $('p#log').click(function (e){
+            $('.logForm').css({'opacity': 1, 'visibility': 'visible'});
+            e.preventDefault();
+        });
+    </script>
+    <div class="content">
+    
+    </div>
+    <!--Login form-->
+    
+    <div id="login">
+        <form class="logForm" action="login.html" method="post">
+            <div class="formRow">
+                <input type="text" id="form_login" name="login" placeholder="Login"><br>
+                <input type="password" id="form_pass" name="password" placeholder="Password"><br>
+                <input type="submit" id="form_enter" name="enter" value="">
+            </div>
+            <div class="rememberMe">
+                <p><input type="checkbox" name="a" value="Запомнить меня"> Запомнить меня</p>
+                <ul> 
+                    <li><a href="registration.html">Registration</a></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+
+  <div id="footer">&copy; LEL Logistic. 2016</div>
+
+</body>
+</html>
+
+
+<!-- добавить select -->

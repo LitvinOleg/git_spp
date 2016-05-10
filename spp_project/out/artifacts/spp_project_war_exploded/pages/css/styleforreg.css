@@ -1,0 +1,131 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+    font-size: 21px;
+	margin 0;
+    padding 0;
+    background-image: url(images/mainPic.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    width: 100%;
+
+}
+
+.regform{
+    background: rgba(148, 148, 149, 0.31);
+	padding: 20px 15px;
+	margin: 20px auto 10px;
+	width: 80%;
+	max-width: 400px;
+	vertical-align: top;
+	font: 300 .7em Arial, serif;
+	overflow: auto;
+	border-radius: 3px;
+	height: 290px;
+}
+.forms_left-block {
+    height: 25px;
+	display: inline-block;
+	float: left;	
+}
+
+.forms_right-block {
+    height: 
+	display: inline-block;
+	float: right;	
+}
+
+.forms_left-block {
+	width: 30%;	
+}
+.forms_right-block {
+	width: 55%;	
+}
+ p {
+    color: aliceblue;
+	height: 20px;
+	margin-bottom: 10px;
+}
+input {
+    height: 20px;
+	margin-bottom: 10px;
+    height: 20px;
+    width: 180px;
+	border-color: 1px solid #ccc;
+}
+
+.submit {
+	margin: auto;
+	width: 100%;
+	max-width: 500px;
+	padding: 10px 10px;
+	border-radius: 5px;
+}
+button {
+    margin: auto;
+    margin-top: 40px;
+	margin-left: 10%;
+	width: 150px;
+	height: 25px;
+	border-radius: 5px;
+	background:rgba(155, 155, 155, 0.79) ;
+	border: none;
+	color: #fff;
+}
+
+input:valid + span:after {
+	content: url(http://htmlbook.ru/example/images/ok.png);
+}
+input:invalid + span:after {
+	content: url(http://htmlbook.ru/example/images/nook.png);
+	color: red;
+	font-size: 12px;
+}
+
+.navbar{
+    margin: 0;
+    border: 2px solid #000000;
+    height: 50px;
+    line-height: 32px;
+    width: 100%;
+    margin-bottom: 30px;
+    background: rgb(0, 0, 0);
+    display: block;
+}
+
+.navbar {
+    display: inline-block;
+}
+
+h1{
+    color: rgb(216, 216, 216);
+}
+
+#footer {
+    text-align: center;
+    position: fixed;
+    left: 0; bottom: 0;
+    padding: 10px; 
+    background: #000000; 
+    color: rgb(216,216,216);
+    width: 100%;
+   }
+h1 span{
+    margin-left: 80px;
+    display: inline-block;
+    position: relative;
+    top: -1.5em;
+}    
+
+
+
+#log{
+    margin-top: -70px;
+    float: right;
+    color: aliceblue;
+}

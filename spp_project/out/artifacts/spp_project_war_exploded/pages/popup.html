@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+    <link rel="stylesheet" href="css/popupstyle.css">
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    $(document).ready(function(){ 
+        PopUpHide();
+    });
+    function PopUpShow(){
+        $("#popup1").show();
+    }
+    function PopUpHide(){
+        $("#popup1").hide();
+    }
+    </script>
+    <div class="b-container">
+        <a href="javascript:PopUpShow()">LOGIN</a>
+    </div>
+    <div class="b-popup" id="popup1">
+        <div class="b-popup-content">
+            <div id="login">
+                <form class="logForm" action="login.html" method="post">
+                    <div class="formRow">
+                        <input type="text" id="form_login" name="login" placeholder="Login"><br>
+                        <input type="password" id="form_pass" name="password" placeholder="Password"><br>
+                        <input type="submit" id="form_enter" name="enter" value="">
+                    </div>
+                    <div class="rememberMe">
+                        <p><input type="checkbox" name="a" value="Запомнить меня"> Запомнить меня</p>
+                        <ul> 
+                            <li><a href="registration.html">Registration</a></li>
+                        </ul>
+                    </div>
+                    <a id="hide" href="javascript:PopUpHide()"><img src="css/images/close.png"></img></a>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
