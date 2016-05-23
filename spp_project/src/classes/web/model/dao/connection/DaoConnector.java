@@ -13,7 +13,7 @@ public class DaoConnector {
     private static volatile Connection instance;
     private static final String driverName = "com.mysql.jdbc.Driver";
 
-    private static final String URL = "jdbc:mysql://localhost:3306/project_db";
+    private static final String URL = "jdbc:mysql://localhost:3306/spp_project_db";
     private static final String nameDB = "root";
     private static final String passwordDB = "root";
 
